@@ -1,0 +1,38 @@
+/* visual section  */
+
+.visual_section{
+  height: 460px;
+  margin-bottom: 48px;
+  background-color: #f1f1f1;
+}
+
+.visual_section_inner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 0 40px;
+  width: 1023px;
+  margin: 0 auto;
+}
+
+@media (min-width: 320px) and (max-width: 1023px) {
+  .visual_section_inner{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 100px;
+  }
+}
+
+.section_title{
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 52px;
+  margin-bottom: 16px;
+}
+
+.description{
+  font-size: 18px;
+  line-height: 28px;
+}
