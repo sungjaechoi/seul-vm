@@ -1,8 +1,5 @@
 export type SectionInfo = {
-  home: {
-    title: string;
-    description: string;
-  };
+
   background: {
     title: string;
     description: string;

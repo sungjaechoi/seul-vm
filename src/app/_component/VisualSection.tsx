@@ -1,48 +1,10 @@
-"use client"
-
-import { usePathname } from "next/navigation";
-import style from "./visualSection.module.css";
-import { SectionInfo } from "@/model/SectionInfo";
+import style from './visualSection.module.css'
 
 type Props = {
-  sectionInfo: SectionInfo
-};
+  v: { title: string; description: string }
+}
 
-export default function VisualSection({sectionInfo}:Props) {
-  const pathName = usePathname()
-
-  let title = ''
-  let description = ''
-
-  if(pathName === "/home"){
-    title = sectionInfo.home.title
-    description = sectionInfo.home.description
-  }
-  if(pathName === "/background"){
-    title = sectionInfo.background.title
-    description = sectionInfo.background.description
-  }
-  if(pathName === "/nature"){
-    title = sectionInfo.nature.title
-    description = sectionInfo.nature.description
-  }
-  if(pathName === "/3D_renders"){
-    title = sectionInfo.renders3D.title
-    description = sectionInfo.renders3D.description
-  }
-  if(pathName === "/travel"){
-    title = sectionInfo.travel.title
-    description = sectionInfo.travel.description
-  }
-  if(pathName === "/street-photography"){
-    title = sectionInfo.streetPhotography.title
-    description = sectionInfo.streetPhotography.description
-  }
-  if(pathName === "/film"){
-    title = sectionInfo.film.title
-    description = sectionInfo.film.description
-  }
-
+export default function VisualSection({ v: { title, description } }: Props) {
   return (
     <section className={style.visual_section}>
       <div className={style.visual_section_inner}>
@@ -50,5 +12,5 @@ export default function VisualSection({sectionInfo}:Props) {
         <span className={style.description}>{description}</span>
       </div>
     </section>
-  );
+  )
 }

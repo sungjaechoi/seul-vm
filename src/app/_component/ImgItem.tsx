@@ -1,12 +1,12 @@
-import style from "./imgList.module.css"
-import Link from "next/link";
+import style from './imgList.module.css'
+import Link from 'next/link'
 
 export default function ImgItem() {
   return (
     <>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="" alt="" />
           </Link>
         </div>
@@ -18,7 +18,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -30,7 +30,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -42,7 +42,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -54,7 +54,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -66,7 +66,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -78,7 +78,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -90,7 +90,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -102,7 +102,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -114,7 +114,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -126,7 +126,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -138,7 +138,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -150,7 +150,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -162,7 +162,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -174,7 +174,7 @@ export default function ImgItem() {
       </li>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={""}>
+          <Link href={''}>
             <img src="/seul_logo.png" alt="" />
           </Link>
         </div>
@@ -187,4 +187,3 @@ export default function ImgItem() {
     </>
   )
 }
-
