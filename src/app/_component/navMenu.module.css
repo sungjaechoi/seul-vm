@@ -1,0 +1,36 @@
+/* navMenu */
+
+.nav_list {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 56px;
+  box-shadow: 0 1px #0000001f;
+  gap: 20px;
+}
+
+.nav_item {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  text-align: center;
+  flex: 1 1 auto;
+  width: calc(100% / 7);
+  min-width: 57px;
+}
+
+.nav_item .nav_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+  font-size: 14px;
+  color: #767676;
+}
+
+.nav_item.is_active .nav_link {
+  box-shadow: inset 0 -2px #111;
+  color: #111;
+  font-weight: 700;
+  pointer-events: none;
+}

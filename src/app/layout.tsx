@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import style from './page.module.css'
 import Link from 'next/link'
-import Nav from './_component/Nav'
 import SearchForm from './_component/SearchForm'
+import NavMenu from './_component/NavMenu'
 const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,17 +17,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={inter.className}>
         <div className={style.wrap}>
           <header className={style.header}>
             <div className={style.logo_search_group}>
               <h1 className={style.logo}>
-                <Link href={'/home'}>
+                <Link href={'/'}>
                   <img src="/seul_logo.png" alt="seulg VM logo" />
                 </Link>
               </h1>
-              <Nav />
+              <nav className={style.nav}>
+                <NavMenu />
+              </nav>
               <SearchForm />
             </div>
           </header>
