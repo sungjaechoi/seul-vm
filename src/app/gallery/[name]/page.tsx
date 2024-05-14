@@ -2,7 +2,7 @@ import ImgList from '@/app/_component/ImgList'
 import VisualSection from '@/app/_component/VisualSection'
 import React from 'react'
 import style from '../../page.module.css'
-import { SectionInfo, sectionInfo } from '@/model/SectionInfo'
+import { typeSectionInfo, sectionInfo } from '@/model/SectionInfo'
 
 type Props = {
   params: {
@@ -12,7 +12,7 @@ type Props = {
 
 export default function Page({ params }: Props) {
   //! Notion - "as Key of"정리
-  const nameV = params.name as keyof SectionInfo
+  const nameV = params.name as keyof typeSectionInfo
   const v = sectionInfo[nameV]
 
   return (

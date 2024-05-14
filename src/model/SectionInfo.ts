@@ -31,4 +31,4 @@ export const sectionInfo = {
   },
 }
 
-export type SectionInfo = typeof sectionInfo
+export type typeSectionInfo = typeof sectionInfo
