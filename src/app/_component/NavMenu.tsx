@@ -2,19 +2,21 @@
 
 import Link from 'next/link'
 import style from './navMenu.module.css'
-import { useSelectedLayoutSegments } from 'next/navigation'
+import { usePathname, useSelectedLayoutSegments } from 'next/navigation'
 import clsx from 'clsx'
 import { FiAlignJustify, FiAlignLeft } from 'react-icons/fi'
 import { sectionInfo, typeSectionInfo } from '@/model/SectionInfo'
 import { useState } from 'react'
 
 export default function Nav() {
+  const path = usePathname()
+  console.log(path)
+
   const segmentArry = useSelectedLayoutSegments()
   const segment = segmentArry[1]
 
-  console.log(segment)
-
   const pathName = segment as keyof typeSectionInfo
+  const navName = sectionInfo[pathName].title
 
   const [isToggeIcon, setIsToggeIcon] = useState(false)
 
@@ -22,103 +24,20 @@ export default function Nav() {
     setIsToggeIcon((prevState) => !prevState)
   }
 
-  if (pathName === undefined) {
-    return (
-      <>
-        <div className={style.menu_area}>
-          <button className={style.menu_button} type="button">
-            <FiAlignJustify />
-            <span>HOME</span>
-          </button>
-        </div>
-        <ul className={style.nav_list}>
-          <li
-            className={clsx(style.nav_item, {
-              [style.is_active]: segment === undefined,
-            })}
-          >
-            <Link className={style.nav_link} href={'/'}>
-              HOME
-            </Link>
-          </li>
-          <li
-            className={clsx(style.nav_item, {
-              [style.is_active]: segment === 'background',
-            })}
-          >
-            <Link className={style.nav_link} href={'/gallery/background'}>
-              배경화면
-            </Link>
-          </li>
-          <li
-            className={clsx(style.nav_item, {
-              [style.is_active]: segment === 'nature',
-            })}
-          >
-            <Link className={style.nav_link} href={'/gallery/nature'}>
-              자연
-            </Link>
-          </li>
-          <li
-            className={clsx(style.nav_item, {
-              [style.is_active]: segment === 'renders3D',
-            })}
-          >
-            <Link className={style.nav_link} href={'/gallery/renders3D'}>
-              3D 렌더링
-            </Link>
-          </li>
-          <li
-            className={clsx(style.nav_item, {
-              [style.is_active]: segment === 'travel',
-            })}
-          >
-            <Link className={style.nav_link} href={'/gallery/travel'}>
-              여행
-            </Link>
-          </li>
-          <li
-            className={clsx(style.nav_item, {
-              [style.is_active]: segment === 'streetPhotography',
-            })}
-          >
-            <Link
-              className={style.nav_link}
-              href={'/gallery/streetPhotography'}
-            >
-              거리 사진
-            </Link>
-          </li>
-          <li
-            className={clsx(style.nav_item, {
-              [style.is_active]: segment === 'film',
-            })}
-          >
-            <Link className={style.nav_link} href={'/gallery/film'}>
-              필름
-            </Link>
-          </li>
-        </ul>
-      </>
-    )
-  }
-
-  const navName = sectionInfo[pathName].title
-
   return (
     <>
       <div className={style.menu_area}>
         <button className={style.menu_button} type="button" onClick={onToggle}>
           {isToggeIcon ? <FiAlignLeft /> : <FiAlignJustify />}
-          <span>{navName}</span>
+          <span>{navName === '' ? 'HOME' : navName}</span>
         </button>
       </div>
       <ul
-        className={clsx(style.nav_list, isToggeIcon ? [style.is_active] : '')}
+        className={clsx(style.nav_list, isToggeIcon ? [style.is_active] : 'a')}
       >
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: segment === undefined,
+            [style.is_active]: path === '/',
           })}
         >
           <Link className={style.nav_link} href={'/'}>
@@ -127,7 +46,7 @@ export default function Nav() {
         </li>
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: segment === 'background',
+            [style.is_active]: navName === '배경화면',
           })}
         >
           <Link className={style.nav_link} href={'/gallery/background'}>
@@ -136,7 +55,7 @@ export default function Nav() {
         </li>
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: segment === 'nature',
+            [style.is_active]: navName === '자연',
           })}
         >
           <Link className={style.nav_link} href={'/gallery/nature'}>
@@ -145,7 +64,7 @@ export default function Nav() {
         </li>
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: segment === 'renders3D',
+            [style.is_active]: navName === '3D 렌더링',
           })}
         >
           <Link className={style.nav_link} href={'/gallery/renders3D'}>
@@ -154,7 +73,7 @@ export default function Nav() {
         </li>
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: segment === 'travel',
+            [style.is_active]: navName === '여행',
           })}
         >
           <Link className={style.nav_link} href={'/gallery/travel'}>
@@ -163,7 +82,7 @@ export default function Nav() {
         </li>
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: segment === 'streetPhotography',
+            [style.is_active]: navName === '거리 사진',
           })}
         >
           <Link className={style.nav_link} href={'/gallery/streetPhotography'}>
@@ -172,7 +91,7 @@ export default function Nav() {
         </li>
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: segment === 'film',
+            [style.is_active]: navName === '필름',
           })}
         >
           <Link className={style.nav_link} href={'/gallery/film'}>
