@@ -30,7 +30,16 @@
 
 .img_search_fieldset button {
   flex: 0 1 auto;
+  width: 40px;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img_search_fieldset button svg {
+  width: 25px;
+  height: 25px;
 }
 
 .img_search_fieldset input + button {

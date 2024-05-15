@@ -1,5 +1,5 @@
-import style from "./searchFrom.module.css";
-
+import style from './searchFrom.module.css'
+import { IoMdSearch } from 'react-icons/io'
 
 export default function SearchForm() {
   return (
@@ -18,10 +18,13 @@ export default function SearchForm() {
               placeholder="고해상도 이미지 검색"
               name="searchKeyword"
             />
-            <button type="submit">검색</button>
+            <button type="submit">
+              <span className="blind">검색</span>
+              <IoMdSearch />
+            </button>
           </fieldset>
         </form>
       </div>
     </>
-  );
+  )
 }
