@@ -24,11 +24,24 @@ export default function Nav() {
     setIsToggeButton((prevState) => !prevState)
   }
 
-  useEffect(() => {
+  //! 특정 코드들을 어떤의미가 있는 이름의 함수로 묶기
+  //*(코드를 읽을떄 함수명으로 빠른코드 파악가능)
+  // useEffect(() => {
+  //   if (pathStatus !== path) {
+  //     setPathStatus(path)
+  //     setIsToggeButton(false)
+  //   }
+  // }, [path, pathStatus])
+
+  const mobileMenuToggle = (path: string, pathStatus: string) => {
     if (pathStatus !== path) {
       setPathStatus(path)
       setIsToggeButton(false)
     }
+  }
+
+  useEffect(() => {
+    mobileMenuToggle(path, pathStatus)
   }, [path, pathStatus])
 
   return (
