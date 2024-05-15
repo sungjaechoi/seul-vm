@@ -1,11 +1,17 @@
 /* navMenu */
 
 .menu_area {
-  /* display: none; */
   padding: 0 20px;
   width: 100%;
   height: 56px;
   z-index: 100;
+  box-shadow: 0 1px #0000001f;
+}
+
+@media (min-width: 561px) {
+  .menu_area {
+    display: none;
+  }
 }
 
 .menu_button {
@@ -42,12 +48,13 @@
 @media (max-width: 561px) {
   .nav_list {
     position: absolute;
-    top: -500px;
+    top: -244px;
+    left: 0;
     width: 100%;
     height: 100%;
-    transform: translateY(-500px);
-    transition: transform 5s ease;
-    z-index: 10;
+    /* transform: translateY(-500px); */
+    transition: transform 1.5s ease;
+    z-index: -1;
     background-color: #fff;
     flex-direction: column;
     height: auto;
@@ -57,8 +64,8 @@
   }
 
   .nav_list.is_active {
-    transform: translateY(556px);
-    transition: transform 5s ease;
+    transform: translateY(362px);
+    transition: transform 1.5s ease;
   }
 }
 

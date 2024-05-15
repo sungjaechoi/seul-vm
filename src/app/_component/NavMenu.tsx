@@ -6,34 +6,41 @@ import { usePathname, useSelectedLayoutSegments } from 'next/navigation'
 import clsx from 'clsx'
 import { FiAlignJustify, FiAlignLeft } from 'react-icons/fi'
 import { sectionInfo, typeSectionInfo } from '@/model/SectionInfo'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Nav() {
   const path = usePathname()
-  console.log(path)
 
   const segmentArry = useSelectedLayoutSegments()
   const segment = segmentArry[1]
 
   const pathName = segment as keyof typeSectionInfo
-  const navName = sectionInfo[pathName].title
+  const navName = path === '/' ? '/' : sectionInfo[pathName].title
 
-  const [isToggeIcon, setIsToggeIcon] = useState(false)
+  const [isToggeButton, setIsToggeButton] = useState(false)
+  const [pathStatus, setPathStatus] = useState(path)
 
   const onToggle = () => {
-    setIsToggeIcon((prevState) => !prevState)
+    setIsToggeButton((prevState) => !prevState)
   }
+
+  useEffect(() => {
+    if (pathStatus !== path) {
+      setPathStatus(path)
+      setIsToggeButton(false)
+    }
+  }, [path, pathStatus])
 
   return (
     <>
       <div className={style.menu_area}>
         <button className={style.menu_button} type="button" onClick={onToggle}>
-          {isToggeIcon ? <FiAlignLeft /> : <FiAlignJustify />}
-          <span>{navName === '' ? 'HOME' : navName}</span>
+          {isToggeButton ? <FiAlignLeft /> : <FiAlignJustify />}
+          <span>{navName === '/' ? 'HOME' : navName}</span>
         </button>
       </div>
       <ul
-        className={clsx(style.nav_list, isToggeIcon ? [style.is_active] : 'a')}
+        className={clsx(style.nav_list, isToggeButton ? [style.is_active] : '')}
       >
         <li
           className={clsx(style.nav_item, {
