@@ -7,7 +7,6 @@
 
 .img_item {
   position: relative;
-  /* flex: 0 1 300px; */
   border: 1.5px solid #f1f1f1;
   border-radius: 6px;
   height: 500px;

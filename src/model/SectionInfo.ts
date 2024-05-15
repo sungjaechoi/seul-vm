@@ -15,7 +15,7 @@ export const sectionInfo = {
       '기술과 예술성이 결합된 3D 렌더 카테고리는 현실과 상상의 경계를 모호하게 만드는 디지털 렌더링 작품을 선보입니다. 건축 시각화에서 환상적인 세계에 이르기까지 이 카테고리는 디지털 장인 정신의 무한한 가능성을 보여줍니다.',
   },
   travel: {
-    title: '여행하다',
+    title: '여행',
     description:
       '이 카테고리와 함께 전 세계를 여행하는 시각적 여행을 떠나 사진작가들이 탐험과 방랑벽의 본질을 포착하세요. 활기찬 거리 풍경과 몰입감 넘치는 문화 체험을 통해 여행 카테고리는 가까운 곳과 먼 곳의 아름다움과 다양성을 보여줍니다.',
   },
@@ -31,4 +31,4 @@ export const sectionInfo = {
   },
 }
 
-export type SectionInfo = typeof sectionInfo
+export type typeSectionInfo = typeof sectionInfo
