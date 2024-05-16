@@ -1,3 +1,4 @@
+import { TImage } from '@/model/Image'
 import style from './visualSection.module.css'
 
 type Props = {

@@ -1,11 +1,16 @@
+import style from './imgList.module.css'
+import ImgItem from './ImgItem'
+import { TImage } from '@/model/Image'
 
-import style from "./imgList.module.css";
-import ImgItem from "./ImgItem";
-
-export default function ImgList() {
+type Props = {
+  images: TImage[]
+}
+export default function ImgList({ images }: Props) {
   return (
     <ul className={style.img_list}>
-      <ImgItem/>
+      {images.map((image) => (
+        <ImgItem key={image.id} image={image} />
+      ))}
     </ul>
-  );
+  )
 }
