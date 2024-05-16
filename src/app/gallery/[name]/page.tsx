@@ -3,6 +3,7 @@ import VisualSection from '@/app/_component/VisualSection'
 import React from 'react'
 import style from '../../page.module.css'
 import { typeSectionInfo, sectionInfo } from '@/model/SectionInfo'
+import { getImages } from '@/app/_lib/getImages'
 
 type Props = {
   params: {
@@ -10,10 +11,11 @@ type Props = {
   }
 }
 
-export default function Page({ params }: Props) {
+export default async function Page({ params }: Props) {
   //! Notion - "as Key of"정리
   const nameV = params.name as keyof typeSectionInfo
   const v = sectionInfo[nameV]
+  const images = await getImages(nameV)
 
   return (
     <div>
@@ -21,7 +23,7 @@ export default function Page({ params }: Props) {
       <section className={style.image_section}>
         <h3 className="blind">이미지 리스트</h3>
         <div className={style.images_section_inner}>
-          <ImgList />
+          <ImgList images={images} />
         </div>
       </section>
     </div>

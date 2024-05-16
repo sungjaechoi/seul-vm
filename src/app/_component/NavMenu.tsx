@@ -87,7 +87,7 @@ export default function Nav() {
             [style.is_active]: navName === '3D 렌더링',
           })}
         >
-          <Link className={style.nav_link} href={'/gallery/renders3D'}>
+          <Link className={style.nav_link} href={'/gallery/renders'}>
             3D 렌더링
           </Link>
         </li>
