@@ -1,9 +1,9 @@
 import style from './imgList.module.css'
 import ImgItem from './ImgItem'
-import { TImage } from '@/model/Image'
+import { Image } from '@/model/Image'
 
 type Props = {
-  images: TImage[]
+  images: Image[]
 }
 export default function ImgList({ images }: Props) {
   return (
