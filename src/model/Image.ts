@@ -1,4 +1,4 @@
-export type TImage = {
+export type Image = {
   id: string
   alternative_slugs: {
     ko: string

@@ -1,9 +1,9 @@
 import style from './imgList.module.css'
 import Link from 'next/link'
-import { TImage } from '@/model/Image'
+import { Image } from '@/model/Image'
 
 type Props = {
-  image: TImage
+  image: Image
 }
 
 export default function ImgItem({ image }: Props) {
