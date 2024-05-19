@@ -24,7 +24,7 @@ export default function RootLayout({
             <div className={style.logo_search_group}>
               <h1 className={style.logo}>
                 <Link href={'/'}>
-                  <img src="/seul_logo.png" alt="seulg VM logo" />
+                  <img src="/img/seul_logo.png" alt="seulg VM logo" />
                 </Link>
               </h1>
               <nav className={style.nav}>
