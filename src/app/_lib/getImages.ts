@@ -6,7 +6,7 @@ export async function getImages(topic?: string) {
     }
 
     const response = await fetch(
-      `https://api.unsplash.com/photos/random?client_id=${apiKey}&query=${topic}&count=28`,
+      `https://api.unsplash.com/photos/random?client_id=${apiKey}&query=${topic}&count=30`,
     )
 
     if (!response.ok) {
