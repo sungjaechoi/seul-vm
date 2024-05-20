@@ -1,3 +1,10 @@
+export type User = {
+  username: string
+  profile_image: {
+    small: string
+  }
+}
+
 export type Image = {
   id: string
   alternative_slugs: {
@@ -11,4 +18,5 @@ export type Image = {
   }
   likes: number
   views: number
+  user: User
 }

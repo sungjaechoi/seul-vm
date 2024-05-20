@@ -38,8 +38,56 @@
   background-color: #f1f1f1;
 }
 
-.util_box {
+.hover_info_area {
   position: absolute;
-  top: 25px;
-  right: 25px;
+  display: none;
+  top: 0px;
+  right: 0px;
+  border-radius: 6px;
+}
+
+.hover_info_area button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 32px;
+  background-color: #e9e9e9;
+  transition: background-color 0.3s ease;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px #0000001a;
+}
+
+.etc_box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.etc_box span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hover_info_area button .like {
+  fill: #e04c4c;
+}
+
+.hover_info_area button:hover {
+  background-color: #f6f6f6;
+}
+
+.img_item:hover .hover_info_area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px 20px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
 }
