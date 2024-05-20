@@ -17,6 +17,7 @@ export default async function Page({ params }: Props) {
   const v = sectionInfo[nameV]
   const images = (await getImages(nameV)) || []
   const firsImageSrc = images[0] ? images[0].urls.full : ''
+  console.log('aa', params)
 
   return (
     <div>
