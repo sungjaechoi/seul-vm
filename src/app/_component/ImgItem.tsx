@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
 import ImageProfile from './ImageProfile'
+import { usePathname } from 'next/navigation'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
@@ -17,6 +18,7 @@ type Props = {
 }
 
 export default function ImgItem({ image }: Props) {
+  const pathname = usePathname()
   const [isliked, setIsLiked] = useState(false)
   const onLickBtnClick = () => {
     setIsLiked((prevState) => !prevState)
@@ -26,23 +28,24 @@ export default function ImgItem({ image }: Props) {
     <>
       <li className={style.img_item}>
         <div className={style.img_box}>
-          <Link href={''}>
-            <img src={image.urls.small} alt={image.alternative_slugs.ko} />
-          </Link>
+          <img src={image.urls.small} alt={image.alternative_slugs.ko} />
         </div>
-        <div className={style.hover_info_area}>
-          <button
-            className={style.like_button}
-            type="button"
-            onClick={onLickBtnClick}
-          >
-            {isliked ? <FaHeart className={style.like} /> : <FaHeart />}
-          </button>
+        <Link
+          href={`${pathname}/photo/${image.id}`}
+          className={style.hover_info_area}
+        >
           <div className={style.etc_box}>
             <ImageProfile user={image.user} />
             <span>{dayjs(image.created_at).fromNow(false)}</span>
           </div>
-        </div>
+        </Link>
+        <button
+          className={style.like_button}
+          type="button"
+          onClick={onLickBtnClick}
+        >
+          {isliked ? <FaHeart className={style.like} /> : <FaHeart />}
+        </button>
       </li>
     </>
   )
