@@ -1,3 +1,8 @@
+/* image section */
+.image_section {
+  margin-bottom: 20px;
+}
+
 .img_list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -47,21 +52,6 @@
   border-radius: 6px;
 }
 
-.like_button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 32px;
-  background-color: #808080;
-  transition: background-color 0.3s ease;
-  border-radius: 6px;
-  box-shadow: 0 1px 2px #0000001a;
-}
-
 .etc_box {
   display: flex;
   justify-content: space-between;
@@ -71,18 +61,17 @@
   font-weight: 500;
 }
 
-.like_button .like {
-  fill: #e04c4c;
-}
-
-.like_button:hover {
-  background-color: #fff;
-}
-
 .img_item:hover .hover_info_area {
   display: flex;
 }
 
-.img_item:hover .like_button {
+.img_item button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+}
+
+.img_item:hover button {
   display: flex;
 }

@@ -1,4 +1,4 @@
-import style from './imgList.module.css'
+import style from './imgSection.module.css'
 import ImgItem from './ImgItem'
 import { Image } from '@/model/Image'
 

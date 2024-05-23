@@ -1,5 +1,6 @@
 /* wrap */
 .wrap {
+  /* position: relative; */
   padding-top: 120px;
 }
 
@@ -60,9 +61,4 @@
   order: 3;
   flex: 1 0 auto;
   margin-bottom: 0.2px;
-}
-
-/* image section */
-.image_section {
-  margin-bottom: 20px;
 }
