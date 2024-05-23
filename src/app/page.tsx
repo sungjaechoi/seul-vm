@@ -1,7 +1,5 @@
-import VisualSection from './_component/VisualSection'
-import ImgList from './_component/ImgList'
-import style from './page.module.css'
 import { getImages } from './_lib/getImages'
+import MainPage from './_component/MainPage'
 
 export default async function page() {
   const v = {
@@ -12,15 +10,5 @@ export default async function page() {
   const images = (await getImages('random')) || []
   const firsImageSrc = images[0] ? images[0].urls.full : ''
 
-  return (
-    <>
-      <VisualSection v={v} src={firsImageSrc} />
-      <section className={style.image_section}>
-        <h3 className="blind">이미지 리스트</h3>
-        <div className={style.images_section_inner}>
-          <ImgList images={images} />
-        </div>
-      </section>
-    </>
-  )
+  return <MainPage v={v} src={firsImageSrc} images={images} />
 }

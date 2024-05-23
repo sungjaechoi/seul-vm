@@ -1,14 +1,13 @@
 'use client'
-import style from './imgList.module.css'
+import style from './imgSection.module.css'
 import Link from 'next/link'
 import { Image } from '@/model/Image'
-import { FaHeart } from 'react-icons/fa'
-import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
 import ImageProfile from './ImageProfile'
 import { usePathname } from 'next/navigation'
+import LikeButton from './LikeButton'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
@@ -19,18 +18,6 @@ type Props = {
 
 export default function ImgItem({ image }: Props) {
   const pathname = usePathname()
-  const [isliked, setIsLiked] = useState(false)
-  const onLickBtnClick = () => {
-    setIsLiked((prevState) => !prevState)
-  }
-
-  // useEffect(() => {
-  //   console.log('useEffect')
-  //   return setIsLiked(false)
-  // }, [])
-
-  // console.log(pathname)
-  // console.log(image.id)
 
   return (
     <>
@@ -50,14 +37,7 @@ export default function ImgItem({ image }: Props) {
             </span>
           </div>
         </Link>
-        <button
-          className={style.like_button}
-          type="button"
-          onClick={onLickBtnClick}
-        >
-          <span className="blind">좋아요</span>
-          {isliked ? <FaHeart className={style.like} /> : <FaHeart />}
-        </button>
+        <LikeButton />
       </li>
     </>
   )

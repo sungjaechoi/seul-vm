@@ -1,0 +1,25 @@
+.closeButton {
+  /* width: 34px; */
+  /* height: 34px; */
+  /* border-radius: 17px; */
+  border: none;
+  cursor: pointer;
+  /* background-color: rgba(0, 0, 0, 1); */
+  /* transition: background-color 0.3s ease; */
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.closeButton svg {
+  width: 24px;
+  height: 24px;
+  fill: #dcdcdc;
+  transition: fill 0.3s ease;
+}
+
+.closeButton:hover svg {
+  fill: #fff;
+}
