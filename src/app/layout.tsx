@@ -36,8 +36,8 @@ export default function RootLayout({
             </div>
           </header>
           <main className={style.main}>
-            {children}
             {modal}
+            {children}
           </main>
         </div>
       </body>

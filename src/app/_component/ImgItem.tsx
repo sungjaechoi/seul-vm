@@ -24,6 +24,9 @@ export default function ImgItem({ image }: Props) {
     setIsLiked((prevState) => !prevState)
   }
 
+  // console.log(pathname)
+  // console.log(image.id)
+
   return (
     <>
       <li className={style.img_item}>
