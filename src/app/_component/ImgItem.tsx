@@ -3,7 +3,7 @@ import style from './imgList.module.css'
 import Link from 'next/link'
 import { Image } from '@/model/Image'
 import { FaHeart } from 'react-icons/fa'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
@@ -23,6 +23,11 @@ export default function ImgItem({ image }: Props) {
   const onLickBtnClick = () => {
     setIsLiked((prevState) => !prevState)
   }
+
+  // useEffect(() => {
+  //   console.log('useEffect')
+  //   return setIsLiked(false)
+  // }, [])
 
   // console.log(pathname)
   // console.log(image.id)

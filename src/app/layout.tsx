@@ -13,11 +13,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal,
-}: Readonly<{
+}: // modal,
+Readonly<{
   children: React.ReactNode
-  modal: React.ReactNode
+  // modal: React.ReactNode
 }>) {
+  // console.log('모달', modal)
+  // console.log('페이지', children)
   return (
     <html lang="ko">
       <body className={inter.className}>
