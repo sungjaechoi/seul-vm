@@ -35,10 +35,7 @@ export default function RootLayout({
               <SearchForm />
             </div>
           </header>
-          <main className={style.main}>
-            {modal}
-            {children}
-          </main>
+          <main className={style.main}>{children}</main>
         </div>
       </body>
     </html>
