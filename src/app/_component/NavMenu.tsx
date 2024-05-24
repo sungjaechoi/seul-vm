@@ -12,8 +12,7 @@ export default function Nav() {
   const path = usePathname()
 
   const segmentArry = useSelectedLayoutSegments()
-  const segment = segmentArry[2]
-
+  const segment = segmentArry[1]
   const pathName = segment as keyof typeSectionInfo
   const navName = path === '/' ? '/' : sectionInfo[pathName].title
 
