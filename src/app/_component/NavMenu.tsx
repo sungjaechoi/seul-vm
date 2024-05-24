@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react'
 
 export default function Nav() {
   const path = usePathname()
-
   const segmentArry = useSelectedLayoutSegments()
   const segment = segmentArry[1]
   const pathName = segment as keyof typeSectionInfo
@@ -68,7 +67,7 @@ export default function Nav() {
             [style.is_active]: navName === '배경화면',
           })}
         >
-          <Link className={style.nav_link} href={'/gallery/background'}>
+          <Link className={style.nav_link} href={'/gallery/wallpapers'}>
             배경화면
           </Link>
         </li>
@@ -86,7 +85,7 @@ export default function Nav() {
             [style.is_active]: navName === '3D 렌더링',
           })}
         >
-          <Link className={style.nav_link} href={'/gallery/renders'}>
+          <Link className={style.nav_link} href={'/gallery/3d-renders'}>
             3D 렌더링
           </Link>
         </li>
@@ -104,7 +103,7 @@ export default function Nav() {
             [style.is_active]: navName === '거리 사진',
           })}
         >
-          <Link className={style.nav_link} href={'/gallery/streetPhotography'}>
+          <Link className={style.nav_link} href={'/gallery/street-photography'}>
             거리 사진
           </Link>
         </li>

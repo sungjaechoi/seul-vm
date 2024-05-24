@@ -26,7 +26,11 @@ export default function ImgItem({ image }: Props) {
           <img src={image.urls.small} alt={image.alternative_slugs.ko} />
         </div>
         <Link
-          href={`${pathname}/photo/${image.id}`}
+          href={
+            pathname === '/'
+              ? `/gallery/nature/${pathname}/photo/${image.id}`
+              : `${pathname}/photo/${image.id}`
+          }
           className={style.hover_info_area}
         >
           <div className={style.etc_box}>
