@@ -2,8 +2,9 @@ import ImageProfile from '@/app/_component/ImageProfile'
 import style from './page.module.css'
 import LikeButton from '@/app/_component/LikeButton'
 import CloseButton from '@/app/_component/CloseButton'
-import getImag from '@/app/_lib/getImag'
-import { locale } from 'dayjs'
+import getImage from '@/app/_lib/getImag'
+import ScrollEvent from './ScrollEvent'
+
 type Props = {
   params: {
     photoId: string
@@ -11,18 +12,16 @@ type Props = {
 }
 export default async function page({ params }: Props) {
   const photoId = params.photoId
-  const image = (await getImag(photoId)) || {}
-  console.log(image)
+  const image = (await getImage(photoId)) || {}
   const viewsCount = image.views as number
   const downloadCount = image.downloads as number
   const withComma = (count: number) => {
     return count.toLocaleString()
   }
 
-  console.log(image.topics.title)
-
   return (
     <div className={style.modal}>
+      <ScrollEvent />
       <div className={style.modal_inner}>
         <div className={style.modal_contaniner}>
           <div className={style.modal_header}>

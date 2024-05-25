@@ -1,4 +1,4 @@
-export default async function getImag(id: string) {
+export default async function getImage(id: string) {
   try {
     const apiKey = process.env.NEXT_PUBLIC_API_KEY
     if (!apiKey) {
