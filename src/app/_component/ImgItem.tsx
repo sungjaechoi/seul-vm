@@ -34,14 +34,12 @@ export default function ImgItem({ image }: Props) {
           className={style.hover_info_area}
         >
           <div className={style.etc_box}>
-            <ImageProfile user={image.user} />
-            <span>
-              <span className="blind">이미지 생성 일자</span>
-              {dayjs(image.created_at).fromNow(false)}
-            </span>
+            <span className="blind">이미지 생성 일자</span>
+            <span>{dayjs(image.created_at).fromNow(false)}</span>
           </div>
         </Link>
         <LikeButton />
+        <ImageProfile user={image.user} />
       </li>
     </>
   )

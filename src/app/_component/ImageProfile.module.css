@@ -1,11 +1,16 @@
-.use_profile {
+.use_profile_btn {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
 }
 
-.use_profile img {
+.use_profile_btn span {
+  color: #fff;
+  font-weight: 500;
+}
+
+.use_profile_btn img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
