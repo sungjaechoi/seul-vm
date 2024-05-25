@@ -1,4 +1,10 @@
 export const sectionInfo = {
+  random: {
+    title: 'Unsplash',
+    description:
+      '인터넷의 시각 자료 출처입니다. 모든 지역에 있는 크리에이터들의 지원을 받습니다.',
+  },
+
   wallpapers: {
     title: '배경화면',
     description:

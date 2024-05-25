@@ -28,7 +28,7 @@ export default function ImgItem({ image }: Props) {
         <Link
           href={
             pathname === '/'
-              ? `/gallery/nature/${pathname}/photo/${image.id}`
+              ? `/gallery/random/${pathname}/photo/${image.id}`
               : `${pathname}/photo/${image.id}`
           }
           className={style.hover_info_area}
