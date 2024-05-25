@@ -4,7 +4,7 @@ import './globals.css'
 import style from './page.module.css'
 import Link from 'next/link'
 import SearchForm from './_component/SearchForm'
-import NavMenu from './_component/NavMenu'
+import Nav from './_component/Nav'
 const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'seul visual material',
@@ -29,9 +29,7 @@ export default function RootLayout({
                   <img src="/img/seul_logo.png" alt="seulg VM logo" />
                 </Link>
               </h1>
-              <nav className={style.nav}>
-                <NavMenu />
-              </nav>
+              <Nav />
               <SearchForm />
             </div>
           </header>

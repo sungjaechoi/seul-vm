@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import style from './navMenu.module.css'
+import style from './nav.module.css'
 import { usePathname, useSelectedLayoutSegments } from 'next/navigation'
 import clsx from 'clsx'
 import { FiAlignJustify, FiAlignLeft } from 'react-icons/fi'
@@ -10,10 +10,13 @@ import { useEffect, useState } from 'react'
 
 export default function Nav() {
   const path = usePathname()
+  const userPage = path.substring(0, 9)
+  const targetUser = '/userPage'
+  console.log(userPage, targetUser)
+
   const segmentArry = useSelectedLayoutSegments()
   const segment = segmentArry[1]
   const pathName = segment as keyof typeSectionInfo
-  const navName = path === '/' ? '/' : sectionInfo[pathName].title
 
   const [isToggeButton, setIsToggeButton] = useState(false)
   const [pathStatus, setPathStatus] = useState(path)
@@ -42,8 +45,12 @@ export default function Nav() {
     mobileMenuToggle(path, pathStatus)
   }, [path, pathStatus])
 
+  if (userPage === targetUser) return null
+
+  const navName = path === '/' ? '/' : sectionInfo[pathName].title
+
   return (
-    <>
+    <nav className={style.nav}>
       <div className={style.menu_area}>
         <button className={style.menu_button} type="button" onClick={onToggle}>
           {isToggeButton ? <FiAlignLeft /> : <FiAlignJustify />}
@@ -117,6 +124,6 @@ export default function Nav() {
           </Link>
         </li>
       </ul>
-    </>
+    </nav>
   )
 }

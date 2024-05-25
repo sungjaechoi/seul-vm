@@ -1,4 +1,8 @@
-/* navMenu */
+.nav {
+  order: 3;
+  flex: 1 0 auto;
+  margin-bottom: 0.2px;
+}
 
 .menu_area {
   padding: 0 20px;

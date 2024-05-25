@@ -1,6 +1,9 @@
 /* wrap */
 .wrap {
-  /* position: relative; */
+  padding-top: 80px;
+}
+
+.wrap:has(nav) {
   padding-top: 120px;
 }
 
@@ -12,7 +15,7 @@
   left: 0;
   width: 100%;
   min-width: 360px;
-  height: 120px;
+  height: auto;
   z-index: 1000;
   background-color: #fff;
 }
@@ -53,12 +56,4 @@
   display: inline-block;
   vertical-align: top;
   width: 100%;
-}
-
-/* nav */
-
-.nav {
-  order: 3;
-  flex: 1 0 auto;
-  margin-bottom: 0.2px;
 }
