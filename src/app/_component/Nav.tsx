@@ -12,7 +12,6 @@ export default function Nav() {
   const path = usePathname()
   const userPage = path.substring(0, 9)
   const targetUser = '/userPage'
-  console.log(userPage, targetUser)
 
   const segmentArry = useSelectedLayoutSegments()
   const segment = segmentArry[1]
@@ -47,7 +46,10 @@ export default function Nav() {
 
   if (userPage === targetUser) return null
 
-  const navName = path === '/' ? '/' : sectionInfo[pathName].title
+  //? build시 title을 찾을수 없다는 typeError
+  //! build는 서버에서 진행
+  // * 클라이언트 컴포넌트상에 문제가 없더라도 build는 서버에서 진행하기 때문에 sectionInfo의 pathName에 접근할수 없다.
+  const navName = path === '/' ? '/' : sectionInfo[pathName]?.title
 
   return (
     <nav className={style.nav}>
