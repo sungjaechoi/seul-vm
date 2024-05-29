@@ -33,12 +33,17 @@
   display: flex;
   justify-content: space-between;
   padding: 20px 20px;
-  height: 72px;
+  height: 80px;
 }
 
 .modal_header button {
   background-color: #fff;
   box-shadow: 0 3px 5px #0000001a;
+}
+
+.modal_header a span {
+  color: #111;
+  font-size: 15px;
 }
 
 .modal_header button svg {
@@ -87,38 +92,13 @@
   flex: 0 1 120px;
 }
 
-.modal_footer ul li:last-child {
-  flex: 1 1 calc(100% - 280px);
-  overflow: hidden;
-}
-
 .modal_footer ul li span {
   font-size: 14px;
   color: #767676;
 }
 
 .modal_footer ul li span + span {
-  display: -webkit-box;
-  word-wrap: break-word;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  overflow: hidden;
   font-size: 16px;
   font-weight: 500;
   color: #111;
-}
-
-/* 이미지 프로필 */
-.use_profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-
-.use_profile img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
 }

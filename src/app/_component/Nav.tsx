@@ -10,8 +10,8 @@ import { useEffect, useState } from 'react'
 
 export default function Nav() {
   const path = usePathname()
-  const userPage = path.substring(0, 9)
-  const targetUser = '/userPage'
+  const userPage = path.split('/')[1]
+  const targetUser = 'userPage'
 
   const segmentArry = useSelectedLayoutSegments()
   const segment = segmentArry[1]

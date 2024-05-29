@@ -1,0 +1,44 @@
+.user_info_section {
+  background-color: #fff;
+}
+
+.section_inner {
+  display: flex;
+  padding: 50px 20px;
+  box-shadow: 0 1px #0000001f;
+  margin-bottom: 20px;
+}
+
+.img_profile {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  flex: 1 1 30%;
+}
+
+.img_profile img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user_info {
+  padding: 20px;
+  flex: 1 1 70%;
+  color: #111;
+}
+
+.user_info strong {
+  font-size: 40px;
+}
+
+.user_info strong + p {
+  padding-top: 15px;
+}
+
+.user_info p {
+  width: calc(100% - 30%);
+  word-break: keep-all;
+  font-size: 15px;
+}

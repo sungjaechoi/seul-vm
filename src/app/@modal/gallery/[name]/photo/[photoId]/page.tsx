@@ -3,7 +3,7 @@ import style from './page.module.css'
 import LikeButton from '@/app/_component/LikeButton'
 import CloseButton from '@/app/_component/CloseButton'
 import getImage from '@/app/_lib/getImag'
-import ScrollEvent from './ScrollEvent'
+import ScrollEvent from './_event/ScrollEvent'
 
 type Props = {
   params: {
@@ -40,12 +40,6 @@ export default async function page({ params }: Props) {
               <li>
                 <span>다운로드</span>
                 <span>{withComma(downloadCount)}</span>
-              </li>
-              <li>
-                <span>작가의 말</span>
-                <span>
-                  {image.user.bio ? image.user.bio : '작가의 말이 없습니다.'}
-                </span>
               </li>
             </ul>
           </div>
