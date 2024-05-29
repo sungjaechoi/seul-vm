@@ -8,6 +8,7 @@ import 'dayjs/locale/ko'
 import ImageProfile from './ImageProfile'
 import { usePathname } from 'next/navigation'
 import LikeButton from './LikeButton'
+import { useRef } from 'react'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
@@ -18,17 +19,25 @@ type Props = {
 
 export default function ImgItem({ image }: Props) {
   const pathname = usePathname()
+  const divEl = useRef<HTMLDivElement | null>(null)
 
   return (
     <>
       <li className={style.img_item}>
-        <div className={style.img_box}>
-          <img src={image.urls.small} alt={image.alternative_slugs.ko} />
+        <div className={style.img_box} ref={divEl}>
+          <img
+            loading="lazy"
+            onLoad={() => {
+              console.log('divEl', divEl.current)
+            }}
+            src={image.urls.small}
+            alt={image.alternative_slugs.ko}
+          />
         </div>
         <Link
           href={
-            pathname === '/'
-              ? `/gallery/random/${pathname}/photo/${image.id}`
+            pathname === '/' || pathname === `/userPage/${image.user.username}`
+              ? `/gallery/random/photo/${image.id}`
               : `${pathname}/photo/${image.id}`
           }
           className={style.hover_info_area}

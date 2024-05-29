@@ -8,6 +8,10 @@
 }
 
 /* header */
+.header:has(nav) {
+  padding: 20px 0 0 0;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -17,6 +21,7 @@
   min-width: 360px;
   height: auto;
   z-index: 1000;
+  padding: 20px 0;
   background-color: #fff;
 }
 
@@ -33,7 +38,6 @@
   display: flex;
   flex-wrap: wrap;
   row-gap: 4px;
-  padding-top: 20px;
   background-color: #fff;
 }
 

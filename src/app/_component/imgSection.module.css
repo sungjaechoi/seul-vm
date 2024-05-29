@@ -74,9 +74,8 @@
   display: none;
 }
 
-.img_item button + button {
-  top: initial;
-  right: initial;
+.img_item button + a {
+  position: absolute;
   bottom: 20px;
   left: 20px;
 }

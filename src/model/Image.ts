@@ -1,8 +1,11 @@
 export type User = {
   username: string
+  name: string
   profile_image: {
     small: string
+    large: string
   }
+  bio: string
 }
 
 export type Image = {
