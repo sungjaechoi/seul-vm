@@ -1,23 +1,47 @@
-import MainPage from '@/app/_component/MainPage'
-import { getImages } from '@/app/_lib/getImages'
-import { getRandomImages } from '@/app/_lib/getRandomImages'
-import { Image } from '@/model/Image'
-import { sectionInfo, typeSectionInfo } from '@/model/SectionInfo'
+import ImageProfile from '@/app/_component/ImageProfile'
+import style from './page.module.css'
+import LikeButton from '@/app/_component/LikeButton'
+import getImage from '@/app/_lib/getImag'
 
 type Props = {
   params: {
-    name: string
     photoId: string
   }
 }
-export default async function Page({ params }: Props) {
-  const nameV = params.name as keyof typeSectionInfo
-  const v = sectionInfo[nameV]
-  const images =
-    params.name === 'random'
-      ? (await getRandomImages()) || []
-      : (await getImages(nameV)) || []
-  const firsImageSrc = images[0] ? images[0].urls.full : ''
+export default async function page({ params }: Props) {
+  const photoId = params.photoId
+  const image = (await getImage(photoId)) || {}
+  const viewsCount = image.views as number
+  const downloadCount = image.downloads as number
+  const withComma = (count: number) => {
+    return count.toLocaleString()
+  }
 
-  return <MainPage v={v} src={firsImageSrc} images={images} />
+  return (
+    <div className={style.img_detail}>
+      <div className={style.img_detail_inner}>
+        <div className={style.img_detail_contaniner}>
+          <div className={style.img_detail_header}>
+            <ImageProfile user={image.user} />
+            <LikeButton />
+          </div>
+          <div className={style.img_detail_contents}>
+            <img src={image.urls.regular} alt={image.alternative_slugs.ko} />
+          </div>
+          <div className={style.img_detail_footer}>
+            <ul>
+              <li>
+                <span>조회수</span>
+                <span>{withComma(viewsCount)}</span>
+              </li>
+              <li>
+                <span>다운로드</span>
+                <span>{withComma(downloadCount)}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
