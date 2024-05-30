@@ -20,6 +20,8 @@ type Props = {
 export default function ImgItem({ image }: Props) {
   const pathname = usePathname()
   const divEl = useRef<HTMLDivElement | null>(null)
+  // console.log('pathname : ', pathname)
+  // console.log('image.user.username : ', image.user.username)
 
   return (
     <>
@@ -27,9 +29,7 @@ export default function ImgItem({ image }: Props) {
         <div className={style.img_box} ref={divEl}>
           <img
             loading="lazy"
-            onLoad={() => {
-              console.log('divEl', divEl.current)
-            }}
+            onLoad={() => {}}
             src={image.urls.small}
             alt={image.alternative_slugs.ko}
           />
