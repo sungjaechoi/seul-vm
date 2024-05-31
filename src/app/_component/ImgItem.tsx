@@ -1,35 +1,46 @@
 'use client'
 import style from './imgSection.module.css'
 import Link from 'next/link'
-import { Image } from '@/model/Image'
+import { Image as Timage } from '@/model/Image'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
 import ImageProfile from './ImageProfile'
 import { usePathname } from 'next/navigation'
 import LikeButton from './LikeButton'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import Image from 'next/image'
+import clsx from 'clsx'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
 
 type Props = {
-  image: Image
+  image: Timage
 }
 
 export default function ImgItem({ image }: Props) {
   const pathname = usePathname()
   const divEl = useRef<HTMLDivElement | null>(null)
-  // console.log('pathname : ', pathname)
-  // console.log('image.user.username : ', image.user.username)
+  const [skeletonState, setSkeletonState] = useState(true)
 
   return (
     <>
       <li className={style.img_item}>
+        <div
+          className={clsx(
+            style.skeleton,
+            skeletonState ? '' : style.isDisabled,
+          )}
+        ></div>
         <div className={style.img_box} ref={divEl}>
-          <img
+          <Image
+            fill
+            sizes="100%"
             loading="lazy"
-            onLoad={() => {}}
+            onLoad={() => {
+              setSkeletonState(false)
+            }}
             src={image.urls.small}
             alt={image.alternative_slugs.ko}
           />
