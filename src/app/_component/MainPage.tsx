@@ -1,7 +1,9 @@
+'use client'
 import ImgList from './ImgList'
 import VisualSection from './VisualSection'
 import { Image } from '@/model/Image'
 import style from '../_component/imgSection.module.css'
+import { useState } from 'react'
 
 type Props = {
   v: { title: string; description: string }
