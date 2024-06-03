@@ -2,6 +2,7 @@ import ImageProfile from '@/app/_component/ImageProfile'
 import style from './page.module.css'
 import LikeButton from '@/app/_component/LikeButton'
 import getImage from '@/app/_lib/getImag'
+import SkeletonImage from '../../../../_component/SkeletonImage'
 
 type Props = {
   params: {
@@ -26,7 +27,12 @@ export default async function page({ params }: Props) {
             <LikeButton />
           </div>
           <div className={style.img_detail_contents}>
-            <img src={image.urls.regular} alt={image.alternative_slugs.ko} />
+            {/* <img src={image.urls.regular} alt={image.alternative_slugs.ko} /> */}
+            <SkeletonImage
+              src={image.urls.regular}
+              alt={image.alternative_slugs.ko}
+              priority={true}
+            />
           </div>
           <div className={style.img_detail_footer}>
             <ul>

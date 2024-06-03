@@ -8,9 +8,7 @@ import 'dayjs/locale/ko'
 import ImageProfile from './ImageProfile'
 import { usePathname } from 'next/navigation'
 import LikeButton from './LikeButton'
-import { useRef, useState } from 'react'
-import Image from 'next/image'
-import clsx from 'clsx'
+import SkeletonImage from '../_component/SkeletonImage'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
@@ -21,30 +19,16 @@ type Props = {
 
 export default function ImgItem({ image }: Props) {
   const pathname = usePathname()
-  const divEl = useRef<HTMLDivElement | null>(null)
-  const [skeletonState, setSkeletonState] = useState(true)
 
   return (
     <>
       <li className={style.img_item}>
-        <div
-          className={clsx(
-            style.skeleton,
-            skeletonState ? '' : style.isDisabled,
-          )}
-        ></div>
-        <div className={style.img_box} ref={divEl}>
-          <Image
-            fill
-            sizes="100%"
-            loading="lazy"
-            onLoad={() => {
-              setSkeletonState(false)
-            }}
-            src={image.urls.small}
-            alt={image.alternative_slugs.ko}
-          />
-        </div>
+        <SkeletonImage
+          src={image.urls.small}
+          alt={image.alternative_slugs.ko}
+          priority={false}
+          loading={'lazy'}
+        />
         <Link
           href={
             pathname === '/' || pathname === `/userPage/${image.user.username}`
