@@ -4,8 +4,7 @@ import LikeButton from '@/app/_component/LikeButton'
 import CloseButton from '@/app/_component/CloseButton'
 import getImage from '@/app/_lib/getImag'
 import ScrollEvent from './_event/ScrollEvent'
-import Image from 'next/image'
-import { useState } from 'react'
+import SkeletonImage from '../../../../../_component/SkeletonImage'
 
 type Props = {
   params: {
@@ -31,12 +30,10 @@ export default async function page({ params }: Props) {
             <LikeButton />
           </div>
           <div className={style.modal_contents}>
-            <Image
+            <SkeletonImage
               src={image.urls.regular}
               alt={image.alternative_slugs.ko}
-              fill
-              priority
-              sizes="100%"
+              priority={true}
             />
           </div>
           <div className={style.modal_footer}>
