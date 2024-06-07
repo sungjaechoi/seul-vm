@@ -26,6 +26,7 @@
 .img_search_fieldset input {
   flex: 1 1 auto;
   height: 100%;
+  padding: 0 10px;
 }
 
 .img_search_fieldset button {
