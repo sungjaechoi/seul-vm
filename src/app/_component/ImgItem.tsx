@@ -20,6 +20,16 @@ type Props = {
 export default function ImgItem({ image }: Props) {
   const pathname = usePathname()
 
+  const getHref = () => {
+    const randomCase =
+      pathname === '/' ||
+      pathname === `/userPage/${image.user.username}` ||
+      `/search/photo/${image.user.username}`
+    return randomCase
+      ? `/gallery/random/photo/${image.id}`
+      : `${pathname}/photo/${image.id}`
+  }
+
   return (
     <>
       <li className={style.img_item}>
@@ -29,14 +39,7 @@ export default function ImgItem({ image }: Props) {
           priority={false}
           loading={'lazy'}
         />
-        <Link
-          href={
-            pathname === '/' || pathname === `/userPage/${image.user.username}`
-              ? `/gallery/random/photo/${image.id}`
-              : `${pathname}/photo/${image.id}`
-          }
-          className={style.hover_info_area}
-        >
+        <Link href={getHref()} className={style.hover_info_area}>
           <div className={style.etc_box}>
             <span className="blind">이미지 생성 일자</span>
             <span>{dayjs(image.created_at).fromNow(false)}</span>

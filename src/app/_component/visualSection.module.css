@@ -54,5 +54,6 @@
 @media (max-width: 1023px) {
   .section_description {
     width: 100%;
+    text-align: center;
   }
 }
