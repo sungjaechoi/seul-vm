@@ -13,7 +13,7 @@ export default async function Page({ params }: Props) {
   //! Notion - "as Key of"정리
   const nameV = params.name as keyof typeSectionInfo
   const v = sectionInfo[nameV]
-  const images = (await getImages(nameV)) || []
+  const images = (await getImages(1, nameV)) || []
   const firstImageSrc = images[0] ? images[0].urls.full : ''
 
   return <MainPage v={v} src={firstImageSrc} images={images} />

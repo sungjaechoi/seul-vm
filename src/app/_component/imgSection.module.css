@@ -1,20 +1,22 @@
 /* image section */
 .image_section {
-  margin-bottom: 20px;
+  margin-bottom: 13px;
+}
+
+.image_section > div {
+  height: 100%;
 }
 
 .img_list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
   padding: 0 20px 20px 20px;
+  height: 100%;
 }
 
 .img_item {
   position: relative;
-  border: 1.5px solid #f1f1f1;
-  border-radius: 6px;
-  height: 450px;
+  border: 7px solid #fff;
+  border-radius: 8px;
+  height: 100%;
 }
 
 .img_item div img {
