@@ -19,7 +19,6 @@ type Props = {
 
 export default function ImgItem({ image }: Props) {
   const pathname = usePathname()
-
   const getHref = () => {
     const randomCase =
       pathname === '/' ||

@@ -6,6 +6,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { AutoSizer, Grid } from 'react-virtualized'
 import { getImages } from '../_lib/getImages'
 import { usePathname } from 'next/navigation'
+import { getRandomImages } from '../_lib/getRandomImages'
 
 type Props = {
   images: Image[]
@@ -16,21 +17,32 @@ export default function ImgList({ images }: Props) {
   const [isLoading, setIsLoading] = useState(false)
   const [nextPageNum, setNextPageNum] = useState(2)
 
-  const pathName = usePathname().substring(9)
-  console.log(pathName)
-  console.log('imageData', imageData)
+  const pathname = usePathname().substring(9)
+  console.log('pathname', pathname)
+  // console.log('imageData', imageData)
 
   const fetchMoreImages = useCallback(async () => {
     if (!isLoading) {
       console.log('nextPageNum', nextPageNum)
       setIsLoading(true)
-      const nextImage = (await getImages(nextPageNum, pathName)) as Image[]
-      console.log('nextImage', nextImage)
-      setImageData((prevImageData) => [...prevImageData, ...(nextImage || [])])
-      setNextPageNum((prevNum) => ++prevNum)
+      if (pathname === '') {
+        const nextRandomImage = (await getRandomImages()) as Image[]
+        setImageData((prevImageData) => [
+          ...prevImageData,
+          ...(nextRandomImage || []),
+        ])
+      } else {
+        const nextImage = (await getImages(nextPageNum, pathname)) as Image[]
+        setImageData((prevImageData) => [
+          ...prevImageData,
+          ...(nextImage || []),
+        ])
+        setNextPageNum((prevNum) => ++prevNum)
+        console.log('nextImage', nextImage)
+      }
       setIsLoading(false)
     }
-  }, [isLoading, nextPageNum, pathName])
+  }, [isLoading, nextPageNum, pathname])
 
   useEffect(() => {
     const scrollListener = () => {

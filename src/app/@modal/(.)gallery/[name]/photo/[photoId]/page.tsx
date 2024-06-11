@@ -12,7 +12,6 @@ type Props = {
   }
 }
 export default async function page({ params }: Props) {
-  console.log('params', params)
   const photoId = params.photoId
   const image = (await getImage(photoId)) || {}
   const viewsCount = image.views as number
