@@ -3,7 +3,7 @@
 .visual_section {
   position: relative;
   height: 460px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .visual_section_inner {

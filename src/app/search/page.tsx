@@ -20,13 +20,15 @@ export default function Page() {
   const [visualShow, setVisualShow] = useState(false)
 
   useEffect(() => {
+    const htmlEl = document.querySelector('html') as HTMLElement
     const fetchData = async () => {
       setVisualShow(false)
-      const searchResult = (await getSearchResult(searchKeyoword)) as Image[]
+      const searchResult = (await getSearchResult(1, searchKeyoword)) as Image[]
       setSearchResult(searchResult)
       setVisualShow(true)
     }
     fetchData()
+    htmlEl.style.overflowY = ''
   }, [searchKeyoword])
 
   if (searchKeyoword === '') {

@@ -19,7 +19,9 @@ type Props = {
 
 export default function ImgItem({ image }: Props) {
   const pathname = usePathname()
+  console.log('itemPath :', pathname)
   const getHref = () => {
+    console.log('??')
     const randomCase =
       pathname === '/' ||
       pathname === `/userPage/${image.user.username}` ||

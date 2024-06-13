@@ -5,8 +5,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'plus.unsplash.com',
+        pathname: '/**', // 모든 경로를 허용
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
-        pathname: '/**',
+        pathname: '/**', // 모든 경로를 허용
       },
     ],
   },

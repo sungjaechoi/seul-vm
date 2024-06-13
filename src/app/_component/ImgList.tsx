@@ -3,10 +3,12 @@ import style from './imgSection.module.css'
 import ImgItem from './ImgItem'
 import { Image } from '@/model/Image'
 import { useEffect, useState, useCallback } from 'react'
-import { AutoSizer, Grid } from 'react-virtualized'
+import { AutoSizer, Grid, ScrollEventData } from 'react-virtualized'
 import { getImages } from '../_lib/getImages'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { getRandomImages } from '../_lib/getRandomImages'
+import { typeSectionInfo } from '@/model/SectionInfo'
+import getSearchResult from '../_lib/getSearchResult'
 
 type Props = {
   images: Image[]
@@ -15,55 +17,101 @@ type Props = {
 export default function ImgList({ images }: Props) {
   const [imageData, setImageData] = useState(images)
   const [isLoading, setIsLoading] = useState(false)
-  const [nextPageNum, setNextPageNum] = useState(2)
+  const [nextImagePageNum, setNextImagePageNum] = useState(1)
+  const [nextSearchPageNum, setNextSearchPageNum] = useState(1)
+  const [heightState, setHeightState] = useState(Infinity)
 
-  const pathname = usePathname().substring(9)
+  const query = useSearchParams()
+  const searchKeyoword = query.get('searchKeyword') || ''
+  const pathname = usePathname()
+  const NavPath = pathname.substring(8)
   console.log('pathname', pathname)
-  // console.log('imageData', imageData)
 
   const fetchMoreImages = useCallback(async () => {
+    //! nexpagenum도 메모리제이션 되니까 따로 써야 하나?
     if (!isLoading) {
-      console.log('nextPageNum', nextPageNum)
       setIsLoading(true)
-      if (pathname === '') {
-        const nextRandomImage = (await getRandomImages()) as Image[]
+      if (pathname === '/') {
+        const nextRandomImages = (await getRandomImages()) as Image[]
         setImageData((prevImageData) => [
           ...prevImageData,
-          ...(nextRandomImage || []),
+          ...(nextRandomImages || []),
         ])
-      } else {
-        const nextImage = (await getImages(nextPageNum, pathname)) as Image[]
+      }
+      if (NavPath === (NavPath as keyof typeSectionInfo)) {
+        console.log('??')
+        const nextImages = (await getImages(
+          nextImagePageNum,
+          NavPath,
+        )) as Image[]
         setImageData((prevImageData) => [
           ...prevImageData,
-          ...(nextImage || []),
+          ...(nextImages || []),
         ])
-        setNextPageNum((prevNum) => ++prevNum)
-        console.log('nextImage', nextImage)
+        setNextImagePageNum((prevNum) => ++prevNum)
+        console.log('nextImagePageNum', nextImagePageNum)
+        setImageData((prevImageData) => [
+          ...prevImageData,
+          ...(nextImages || []),
+        ])
+      }
+      //! 재 검색시 이전 데이터 없어야함 -> 리렌더??
+      if (pathname === '/search') {
+        const nextSearchResultImages = (await getSearchResult(
+          nextSearchPageNum,
+          searchKeyoword,
+        )) as Image[]
+        setNextSearchPageNum((prevNum) => ++prevNum)
+        console.log('nextSearchPageNum', nextSearchPageNum)
+        setImageData((prevImageData) => [
+          ...prevImageData,
+          ...(nextSearchResultImages || []),
+        ])
       }
       setIsLoading(false)
     }
-  }, [isLoading, nextPageNum, pathname])
+  }, [isLoading, NavPath, pathname, searchKeyoword])
+
+  const scrollListener = (params: ScrollEventData) => {
+    // console.log('scrollTop', params.scrollTop)
+    // console.log('clientHeight', params.clientHeight)
+    // console.log('scrollHeight', params.scrollHeight)
+    const htmlEl = document.querySelector('html') as HTMLElement
+    // console.log('params.scrollTop :', params.scrollTop)
+    if (params.scrollTop === 0) {
+      setHeightState(Infinity)
+      htmlEl.style.overflowY = ''
+    }
+    if (
+      params.scrollTop + params.clientHeight >= params.scrollHeight - 300 &&
+      !isLoading
+    ) {
+      fetchMoreImages()
+    }
+  }
 
   useEffect(() => {
-    const scrollListener = () => {
+    const htmlEl = document.querySelector('html') as HTMLElement
+    const htmlOverflowEvent = () => {
       const scrollTop = window.scrollY // scrollTop: 현재 스크롤의 위치
-      const clientHeight = document.documentElement.clientHeight // clientHeight: 보이는 영역의 높이
-      const scrollHeight = document.documentElement.scrollHeight // scrollHeight: 전체 스크롤 높이
-      if (scrollTop + clientHeight >= scrollHeight - 300 && !isLoading) {
-        console.log('끝에 도달')
-        fetchMoreImages()
+
+      if (scrollTop >= 460) {
+        htmlEl.style.overflowY = 'hidden'
+        setHeightState(800)
       }
     }
-
-    window.addEventListener('scroll', scrollListener)
-    return () => window.removeEventListener('scroll', scrollListener)
-  }, [fetchMoreImages, isLoading])
+    window.addEventListener('scroll', htmlOverflowEvent)
+    return () => {
+      window.removeEventListener('scroll', htmlOverflowEvent)
+      htmlEl.style.overflowY = ''
+    }
+  }, [])
 
   return (
     <div className={style.img_list}>
-      {imageData.length}
+      {/* {imageData.length} */}
       <AutoSizer>
-        {({ width, height }) => (
+        {({ width }) => (
           <Grid
             cellRenderer={({ columnIndex, key, rowIndex, style }) => {
               const index = rowIndex * 6 + columnIndex
@@ -79,13 +127,17 @@ export default function ImgList({ images }: Props) {
               )
             }}
             columnCount={6} // 열의 개수를 지정
-            columnWidth={310} // 각 열의 너비를 지정
+            columnWidth={314} // 각 열의 너비를 지정
             rowCount={Math.ceil(imageData.length / 6)} //* 렌더링할 행의 총 개수
             rowHeight={447} // 항목의 높이 = 각 행의 높이
             width={width} // 항목의 너비
             gridGap={20}
-            height={height}
-            style={{ height: 'auto' }}
+            height={heightState}
+            onScroll={scrollListener}
+            style={{
+              padding: '0 10px 10px 10px',
+              marginTop: '20px',
+            }}
           />
         )}
       </AutoSizer>
