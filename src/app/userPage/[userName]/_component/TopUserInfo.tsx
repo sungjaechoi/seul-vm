@@ -1,4 +1,4 @@
-import { Image, User } from '@/model/Image'
+import { Image } from '@/model/Image'
 import style from './topUserInfo.module.css'
 
 type Props = {
