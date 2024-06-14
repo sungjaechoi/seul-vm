@@ -15,7 +15,7 @@ dayjs.extend(relativeTime)
 
 type Props = {
   image: Timage
-  query: string | undefined
+  query: string
 }
 
 export default function ImgItem({ image, query }: Props) {
@@ -23,12 +23,14 @@ export default function ImgItem({ image, query }: Props) {
 
   function getHref() {
     switch (pathname) {
-      case `${pathname}/photo/${image.id}`:
-        return `${pathname}/photo/${image.id}`
-      case '/search':
-        return `/search/photo/${image.id}?searchKeyword=${query}`
-      default:
+      case '/':
         return `/gallery/random/photo/${image.id}`
+      case `/userPage/${image.user.username}`:
+        return `/gallery/random/photo/${image.id}`
+      case '/search':
+        return `/gallery/random/photo/${image.id}?searchKeyword=${query}`
+      default:
+        return `${pathname}/photo/${image.id}`
     }
   }
 

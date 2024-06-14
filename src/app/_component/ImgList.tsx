@@ -4,7 +4,7 @@ import { Image } from '@/model/Image'
 
 type Props = {
   images: Image[]
-  query: string | undefined
+  query: string
 }
 export default function ImgList({ images, query }: Props) {
   console.log('images', images)
