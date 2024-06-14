@@ -20,10 +20,10 @@ function SearchPage() {
       setSearchResult(searchResult)
       setVisualShow(true)
     }
-    console.log('fetchData()')
     fetchData()
   }, [searchKeyoword])
 
+  console.log(searchResult)
   const v = {
     title: searchKeyoword,
     description: `"${searchKeyoword}"의 검색 결과 ${searchResult.length}건`,
@@ -38,7 +38,7 @@ function SearchPage() {
         <section className={style.image_section}>
           <h3 className="blind">이미지 리스트</h3>
           <div className={style.images_section_inner}>
-            <ImgList images={searchResult} />
+            <ImgList images={searchResult} query={searchKeyoword} />
           </div>
         </section>
       )}
