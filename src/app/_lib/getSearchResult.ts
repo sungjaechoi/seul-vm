@@ -1,4 +1,7 @@
-export default async function getSearchResult(searchKeyword: string) {
+export default async function getSearchResult(
+  page: number,
+  searchKeyword: string,
+) {
   try {
     const apiKey = process.env.NEXT_PUBLIC_API_KEY
     if (!apiKey) {
@@ -6,7 +9,7 @@ export default async function getSearchResult(searchKeyword: string) {
     }
 
     const response = await fetch(
-      `https://api.unsplash.com/search/photos?client_id=${apiKey}&per_page=30&query=${searchKeyword}`,
+      `https://api.unsplash.com/search/photos?client_id=${apiKey}&page=${page}&per_page=30&query=${searchKeyword}`,
     )
 
     if (!response.ok) {

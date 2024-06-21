@@ -20,7 +20,7 @@ export default async function page({ params }: Props) {
       <section className={style.image_section}>
         <h3 className="blind">이미지 리스트</h3>
         <div className={style.images_section_inner}>
-          <ImgList images={userImages} />
+          <ImgList images={userImages} query="" />
         </div>
       </section>
     </>

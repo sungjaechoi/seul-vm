@@ -1,4 +1,4 @@
-export async function getImages(topic?: string) {
+export async function getImages(page: 1 | number, topic?: string) {
   try {
     const apiKey = process.env.NEXT_PUBLIC_API_KEY
     if (!apiKey) {
@@ -6,7 +6,7 @@ export async function getImages(topic?: string) {
     }
 
     const response = await fetch(
-      `https://api.unsplash.com/topics/${topic}/photos?client_id=${apiKey}&order_by=latest&page=1&per_page=30`,
+      `https://api.unsplash.com/topics/${topic}/photos?client_id=${apiKey}&order_by=latest&page=${page}&per_page=30`,
     )
 
     if (!response.ok) {

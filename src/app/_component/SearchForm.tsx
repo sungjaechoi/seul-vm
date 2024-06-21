@@ -15,7 +15,7 @@ export default function SearchForm() {
 
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
-    route.push(`/search?searchKeyword=${searchKeyword}`)
+    route.push(`/search?searchKeyword=${searchKeyword}&clean=true`)
     setSearchKeyword('')
   }
 
