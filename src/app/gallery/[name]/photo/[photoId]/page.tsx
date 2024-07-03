@@ -32,6 +32,7 @@ export default async function page({ params }: Props) {
               src={image.urls.regular}
               alt={image.alternative_slugs.ko}
               priority={true}
+              color={image.color}
             />
           </div>
           <div className={style.img_detail_footer}>

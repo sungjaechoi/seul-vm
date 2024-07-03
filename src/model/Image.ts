@@ -22,4 +22,5 @@ export type Image = {
   likes: number
   views: number
   user: User
+  color: string
 }
