@@ -9,16 +9,17 @@ type Props = {
   v: { title: string; description: string }
   src: string
   images: Image[]
+  color: string
 }
 
-export default function MainPage({ v, src, images }: Props) {
+export default function MainPage({ v, src, images, color }: Props) {
   const [imageState, setImageState] = useState(images)
   const addImages = (images: Image[]) => {
     setImageState([...imageState, ...images])
   }
   return (
     <div>
-      <VisualSection v={v} src={src} />
+      <VisualSection v={v} src={src} color={color} />
       <section className={style.image_section}>
         <h3 className="blind">이미지 리스트</h3>
         <div className={style.images_section_inner}>

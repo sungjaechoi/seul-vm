@@ -15,6 +15,14 @@ export default async function Page({ params }: Props) {
   const v = sectionInfo[nameV]
   const images = (await getImages(1, nameV)) || []
   const firstImageSrc = images[0] ? images[0].urls.full : ''
+  const SkeletonImageColor = images[0] ? images[0].color : ''
 
-  return <MainPage v={v} src={firstImageSrc} images={images} />
+  return (
+    <MainPage
+      v={v}
+      src={firstImageSrc}
+      images={images}
+      color={SkeletonImageColor}
+    />
+  )
 }

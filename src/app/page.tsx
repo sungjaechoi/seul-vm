@@ -1,5 +1,6 @@
 import MainPage from './_component/MainPage'
 import { getRandomImages } from './_lib/getRandomImages'
+import SkeletonImage from './_component/SkeletonImage'
 
 export default async function page() {
   const v = {
@@ -9,6 +10,14 @@ export default async function page() {
   }
   const images = (await getRandomImages()) || []
   const firsImageSrc = images[0] ? images[0].urls.full : ''
+  const SkeletonImageColor = images[0] ? images[0].color : ''
 
-  return <MainPage v={v} src={firsImageSrc} images={images} />
+  return (
+    <MainPage
+      v={v}
+      src={firsImageSrc}
+      images={images}
+      color={SkeletonImageColor}
+    />
+  )
 }
