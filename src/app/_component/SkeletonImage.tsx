@@ -14,7 +14,7 @@ type Props = {
   color: string
 }
 
-const load = keyframes`
+const loadAnimation = keyframes`
   100% {
     background-position: -100% 0;
   }
@@ -22,7 +22,7 @@ const load = keyframes`
 
 const SkeletonImageStyled = styled.div<{ color: string }>`
   ${({ color }) => css`
-    animation: ${load} 1s infinite;
+    animation: ${loadAnimation} 1s infinite;
     background: linear-gradient(
       120deg,
       #e5e5e5 30%,
@@ -30,6 +30,10 @@ const SkeletonImageStyled = styled.div<{ color: string }>`
       ${color} 48%,
       #e5e5e5 38%
     );
+    transition: 3s;
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    pointer-events: none;
   `}
 `
 
@@ -58,12 +62,6 @@ export default function SkeletonImage({
       <SkeletonImageStyled
         color={color}
         className={clsx(style.skeleton, skeletonState ? '' : style.isDisabled)}
-        style={{
-          transition: '3s',
-          backgroundSize: '200% 100%',
-          backgroundPosition: '100% 0',
-          pointerEvents: 'none',
-        }}
       ></SkeletonImageStyled>
     </div>
   )

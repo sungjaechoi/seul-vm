@@ -18,9 +18,11 @@ export type Image = {
     full: string
     small: string
     thumb: string
+    regular: string
   }
   likes: number
   views: number
   user: User
   color: string
+  downloads: number
 }

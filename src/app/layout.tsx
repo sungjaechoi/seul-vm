@@ -5,6 +5,7 @@ import style from './page.module.css'
 import Link from 'next/link'
 import SearchForm from './_component/SearchForm'
 import Nav from './_component/Nav'
+import LikesProvider from './_component/LikesProvider'
 const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'seul visual material',
@@ -33,10 +34,12 @@ export default function RootLayout({
               <SearchForm />
             </div>
           </header>
-          <main className={style.main}>
-            {children}
-            {modal}
-          </main>
+          <LikesProvider>
+            <main className={style.main}>
+              {children}
+              {modal}
+            </main>
+          </LikesProvider>
         </div>
       </body>
     </html>
