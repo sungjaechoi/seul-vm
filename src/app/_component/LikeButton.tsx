@@ -1,12 +1,22 @@
 'use client'
-import { useState } from 'react'
 import { FaHeart } from 'react-icons/fa'
 import style from './likeButton.module.css'
-export default function LikeButton() {
-  const [isliked, setIsLiked] = useState(false)
+
+type Props = {
+  isLiked: boolean
+  onLike: () => void
+  offLike: () => void
+}
+
+export default function LikeButton({ isLiked, onLike, offLike }: Props) {
   const onLickBtnClick = () => {
-    setIsLiked((prevState) => !prevState)
+    if (isLiked) {
+      offLike()
+    } else {
+      onLike()
+    }
   }
+
   return (
     <button
       className={style.like_button}
@@ -14,7 +24,7 @@ export default function LikeButton() {
       onClick={onLickBtnClick}
     >
       <span className="blind">좋아요</span>
-      {isliked ? <FaHeart className={style.like} /> : <FaHeart />}
+      {isLiked ? <FaHeart className={style.like} /> : <FaHeart />}
     </button>
   )
 }

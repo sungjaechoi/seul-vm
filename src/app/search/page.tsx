@@ -32,10 +32,13 @@ function SearchPage() {
   }
 
   const firstImageSrc = searchResult[0] ? searchResult[0].urls.full : ''
+  const SkeletonImageColor = searchResult[0] ? searchResult[0].color : ''
 
   return (
     <div>
-      {visualShow && <VisualSection v={v} src={firstImageSrc} />}
+      {visualShow && (
+        <VisualSection v={v} src={firstImageSrc} color={SkeletonImageColor} />
+      )}
       {searchResult.length === 0 ? null : (
         <section className={style.image_section}>
           <h3 className="blind">이미지 리스트</h3>

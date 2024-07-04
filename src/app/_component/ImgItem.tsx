@@ -9,6 +9,8 @@ import ImageProfile from './ImageProfile'
 import { usePathname } from 'next/navigation'
 import LikeButton from './LikeButton'
 import SkeletonImage from '../_component/SkeletonImage'
+import { useContext } from 'react'
+import { likesContext } from './LikesProvider'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
@@ -20,7 +22,6 @@ type Props = {
 
 export default function ImgItem({ image, query }: Props) {
   const pathname = usePathname()
-
   function getHref() {
     switch (pathname) {
       case '/':
@@ -34,6 +35,13 @@ export default function ImgItem({ image, query }: Props) {
     }
   }
 
+  const { likes, addLike, removeLike } = useContext(likesContext)
+  // useContext hook을 사용하여 likesContext에서 제공하는 값을 가져옴
+  const isLiked = likes.some((like) => like.imgId === image.id)
+
+  const onLike = () => addLike(image.id)
+  const offLike = () => removeLike(image.id)
+
   return (
     <>
       <li className={style.img_item}>
@@ -42,6 +50,7 @@ export default function ImgItem({ image, query }: Props) {
           alt={image.alternative_slugs.ko}
           priority={false}
           loading={'lazy'}
+          color={image.color}
         />
         <Link href={getHref()} className={style.hover_info_area}>
           <div className={style.etc_box}>
@@ -49,7 +58,7 @@ export default function ImgItem({ image, query }: Props) {
             <span>{dayjs(image.created_at).fromNow(false)}</span>
           </div>
         </Link>
-        <LikeButton />
+        <LikeButton isLiked={isLiked} onLike={onLike} offLike={offLike} />
         <ImageProfile user={image.user} />
       </li>
     </>
