@@ -9,7 +9,7 @@ type Like = {
 }
 
 type ContextInitial = {
-  likes: Image[]
+  likes: Like[]
   addLike: (img: Image) => void
   removeLike: (img: Image) => void
 }
@@ -46,13 +46,13 @@ export default function LikesProvider({ children }: Props) {
     localStorage.setItem('likes', JSON.stringify(likes))
   }, [likes])
 
-  const addLike = (img: string) => {
-    setLikes((prevLikes) => [...prevLikes, { imgId, isLikes: true }])
+  const addLike = (img: Image) => {
+    setLikes((prevLikes) => [...prevLikes, { img, isLikes: true }])
     // 기존 배열에 { imgId, isLikes: true }를 추가한 새로운 배열을 생성
   }
 
-  const removeLike = (img: string) => {
-    setLikes((prevLikes) => prevLikes.filter((like) => like.imgId !== imgId))
+  const removeLike = (img: Image) => {
+    setLikes((prevLikes) => prevLikes.filter((like) => like.img.id !== img.id))
     // 이전 likes의 배열을 순회하면서 imgId와 일치 하지 않은 요소들만 포함한 새로운 배열
   }
 
