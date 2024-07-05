@@ -6,6 +6,7 @@ import Link from 'next/link'
 import SearchForm from './_component/SearchForm'
 import Nav from './_component/Nav'
 import LikesProvider from './_component/LikesProvider'
+import MyLikes from './_component/MyLikes'
 const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'seul visual material',
@@ -22,25 +23,26 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className}>
-        <div className={style.wrap}>
-          <header className={style.header}>
-            <div className={style.logo_search_group}>
-              <h1 className={style.logo}>
-                <Link href={'/'}>
-                  <img src="/img/seul_logo.png" alt="seulg VM logo" />
-                </Link>
-              </h1>
-              <Nav />
-              <SearchForm />
-            </div>
-          </header>
-          <LikesProvider>
+        <LikesProvider>
+          <div className={style.wrap}>
+            <header className={style.header}>
+              <div className={style.logo_search_group}>
+                <h1 className={style.logo}>
+                  <Link href={'/'}>
+                    <img src="/img/seul_logo.png" alt="seulg VM logo" />
+                  </Link>
+                </h1>
+                <Nav />
+                <SearchForm />
+                <MyLikes />
+              </div>
+            </header>
             <main className={style.main}>
               {children}
               {modal}
             </main>
-          </LikesProvider>
-        </div>
+          </div>
+        </LikesProvider>
       </body>
     </html>
   )

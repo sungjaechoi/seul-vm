@@ -2,7 +2,7 @@
 
 .img_search_area {
   order: 2;
-  flex: 1 1 calc(100% - 100px);
+  flex: 1 1 calc(100% - 200px);
   height: 40px;
   margin-right: 20px;
   border-radius: 24px;

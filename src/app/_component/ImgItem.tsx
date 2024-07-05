@@ -22,6 +22,7 @@ type Props = {
 
 export default function ImgItem({ image, query }: Props) {
   const pathname = usePathname()
+  console.log(image)
   function getHref() {
     switch (pathname) {
       case '/':
@@ -37,10 +38,10 @@ export default function ImgItem({ image, query }: Props) {
 
   const { likes, addLike, removeLike } = useContext(likesContext)
   // useContext hook을 사용하여 likesContext에서 제공하는 값을 가져옴
-  const isLiked = likes.some((like) => like.imgId === image.id)
+  const isLiked = likes.some((like) => like.id === image.id)
 
-  const onLike = () => addLike(image.id)
-  const offLike = () => removeLike(image.id)
+  const onLike = () => addLike(image)
+  const offLike = () => removeLike(image)
 
   return (
     <>
