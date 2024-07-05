@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import style from './page.module.css'
 import Link from 'next/link'
@@ -7,11 +7,18 @@ import SearchForm from './_component/SearchForm'
 import Nav from './_component/Nav'
 import LikesProvider from './_component/LikesProvider'
 import MyLikes from './_component/MyLikes'
-const inter = Inter({ subsets: ['latin'] })
+
 export const metadata: Metadata = {
-  title: 'seul visual material',
+  title: 'seul - unsplash clone',
   description: 'unsplash toy project',
 }
+
+const pretendard = localFont({
+  src: '../../public/fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
+  variable: '--font-pretendard',
+})
 
 export default function RootLayout({
   children,
@@ -22,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={inter.className}>
+      <body className={pretendard.className}>
         <LikesProvider>
           <div className={style.wrap}>
             <header className={style.header}>
