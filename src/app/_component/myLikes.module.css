@@ -1,0 +1,40 @@
+.my_like_button {
+  order: 3;
+  flex: 1 0 auto;
+  margin-right: 20px;
+  position: relative;
+  /* width: 60px; */
+  height: 40px;
+  border: 1px solid #e04c4c;
+  background-color: #e04c4c;
+  border-radius: 14px;
+}
+
+.my_like_button::after {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 10px solid #e04c4c;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 0px solid transparent;
+  content: '';
+}
+
+.like_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.like_box svg {
+  fill: #fff;
+  width: 18px;
+  height: 18px;
+}
+
+.like_num {
+  color: #fff;
+}

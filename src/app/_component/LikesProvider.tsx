@@ -1,16 +1,17 @@
 'use client'
 
+import { Image } from '@/model/Image'
 import { createContext, ReactNode, useState, useEffect } from 'react'
 
 type Like = {
-  imgId: string
+  img: Image
   isLikes: boolean
 }
 
 type ContextInitial = {
-  likes: Like[]
-  addLike: (imgId: string) => void
-  removeLike: (imgId: string) => void
+  likes: Image[]
+  addLike: (img: Image) => void
+  removeLike: (img: Image) => void
 }
 
 type Props = { children: ReactNode }
@@ -45,12 +46,12 @@ export default function LikesProvider({ children }: Props) {
     localStorage.setItem('likes', JSON.stringify(likes))
   }, [likes])
 
-  const addLike = (imgId: string) => {
+  const addLike = (img: string) => {
     setLikes((prevLikes) => [...prevLikes, { imgId, isLikes: true }])
     // 기존 배열에 { imgId, isLikes: true }를 추가한 새로운 배열을 생성
   }
 
-  const removeLike = (imgId: string) => {
+  const removeLike = (img: string) => {
     setLikes((prevLikes) => prevLikes.filter((like) => like.imgId !== imgId))
     // 이전 likes의 배열을 순회하면서 imgId와 일치 하지 않은 요소들만 포함한 새로운 배열
   }
