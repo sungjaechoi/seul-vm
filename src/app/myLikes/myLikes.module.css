@@ -1,0 +1,19 @@
+.not_mylikes_area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  height: calc(100vh - 364px);
+}
+
+.img_box {
+  width: 187.5px;
+  height: 122px;
+  border-radius: 16px;
+  background: url('../../../public/img/notLikes.png') no-repeat center / cover;
+}
+
+.img_box + span {
+  font-size: 20px;
+}
