@@ -8,6 +8,7 @@ import CloseButton from '@/app/_component/CloseButton'
 import { Image } from '@/model/Image'
 import { useContext } from 'react'
 import { likesContext } from '@/app/_component/LikesProvider'
+import { useRouter } from 'next/navigation'
 
 type Props = {
   image: Image
@@ -16,10 +17,12 @@ type Props = {
 export default function Modal({ image }: Props) {
   const { likes, addLike, removeLike } = useContext(likesContext)
   const isLiked = likes.some((like) => like.img.id === image.id)
-
   const onLike = () => addLike(image)
   const offLike = () => removeLike(image)
-
+  const router = useRouter()
+  const onClick = () => {
+    router.back()
+  }
   const viewsCount = image.views as number
   const downloadCount = image.downloads as number
   const withComma = (count: number) => {
@@ -29,6 +32,11 @@ export default function Modal({ image }: Props) {
     <div className={style.modal}>
       <ScrollEvent />
       <div className={style.modal_inner}>
+        <button
+          className={style.dim_close}
+          type="button"
+          onClick={onClick}
+        ></button>
         <div className={style.modal_contaniner}>
           <div className={style.modal_header}>
             <ImageProfile user={image.user} />
