@@ -36,9 +36,10 @@
 .img_detail_header button svg {
   transition: fill 0.3s ease;
 }
-
-.img_detail_header button:hover svg {
-  fill: #e04c4c;
+@media (hover: hover) {
+  .img_detail_header button:hover svg {
+    fill: #e04c4c;
+  }
 }
 
 .img_detail_contents {

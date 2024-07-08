@@ -19,7 +19,7 @@
 
 .img_item div img {
   border-radius: 4px;
-  object-fit: fill;
+  object-fit: contain;
 }
 
 .hover_info_area {
@@ -46,6 +46,13 @@
   font-weight: 500;
 }
 
+@media (max-width: 768px) {
+  .hover_info_area {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
 .img_item:hover .hover_info_area {
   display: flex;
 }
@@ -64,10 +71,20 @@
   display: none;
 }
 
-.img_item:hover button + a {
-  display: flex;
+@media (max-width: 768px) {
+  .img_item button {
+    display: flex;
+  }
+  .img_item button + a {
+    display: flex;
+  }
 }
+@media (hover: hover) {
+  .img_item:hover button + a {
+    display: flex;
+  }
 
-.img_item:hover button {
-  display: flex;
+  .img_item:hover button {
+    display: flex;
+  }
 }

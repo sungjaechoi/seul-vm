@@ -1,9 +1,8 @@
 .my_like_button {
   order: 3;
-  flex: 1 0 auto;
+  width: 51px;
   margin-right: 20px;
   position: relative;
-  /* width: 60px; */
   height: 40px;
   border: 1px solid #e04c4c;
   background-color: #e04c4c;

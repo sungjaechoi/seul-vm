@@ -36,6 +36,13 @@
   background-color: #fff;
 }
 
+@media (max-width: 768px) {
+  .modal_contaniner {
+    width: calc(100% - 40px);
+    height: calc(100% - 200px);
+  }
+}
+
 .modal_header {
   position: relative;
   display: flex;
@@ -58,8 +65,10 @@
   transition: fill 0.3s ease;
 }
 
-.modal_header button:hover svg {
-  fill: #e04c4c;
+@media (hover: hover) {
+  .modal_header button:hover svg {
+    fill: #e04c4c;
+  }
 }
 
 .modal_contents {

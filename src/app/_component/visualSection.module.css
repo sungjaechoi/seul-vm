@@ -27,7 +27,7 @@
   object-position: center;
 }
 
-@media (min-width: 320px) and (max-width: 1023px) {
+@media (max-width: 1023px) {
   .visual_section_inner {
     width: 100%;
     align-items: center;
