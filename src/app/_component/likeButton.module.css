@@ -13,7 +13,14 @@
 .like_button .like {
   fill: #e04c4c;
 }
+@media (hover: hover) {
+  .like_button:hover {
+    background-color: #fff;
+  }
+}
 
-.like_button:hover {
-  background-color: #fff;
+@media (max-width: 768px) {
+  .like_button {
+    background-color: #fff;
+  }
 }

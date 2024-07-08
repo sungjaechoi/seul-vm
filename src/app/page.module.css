@@ -1,15 +1,6 @@
 /* wrap */
 .wrap {
-  padding-top: 80px;
-}
-
-.wrap:has(nav) {
   padding-top: 120px;
-}
-
-/* header */
-.header:has(nav) {
-  padding: 20px 0 0 0;
 }
 
 .header {
@@ -21,23 +12,14 @@
   min-width: 360px;
   height: auto;
   z-index: 1000;
-  padding: 20px 0;
   background-color: #fff;
-}
-
-@media (max-width: 561px) {
-  .wrap {
-    padding-top: 120px;
-  }
-  .header {
-    height: auto;
-  }
 }
 
 .logo_search_group {
   display: flex;
   flex-wrap: wrap;
   row-gap: 4px;
+  padding-top: 20px;
   background-color: #fff;
 }
 
