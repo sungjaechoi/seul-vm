@@ -11,6 +11,7 @@ import LikeButton from './LikeButton'
 import SkeletonImage from '../_component/SkeletonImage'
 import { useContext } from 'react'
 import { likesContext } from './LikesProvider'
+import path from 'path'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
@@ -31,18 +32,18 @@ export default function ImgItem({ image, query }: Props) {
       case '/search':
         return `/gallery/random/photo/${image.id}?searchKeyword=${query}`
       case '/myLikes':
-        return `/gallery/random/photo/${image.id}?searchKeyword=${query}`
+        return `/gallery/myLikes/photo/${image.id}`
       default:
         return `${pathname}/photo/${image.id}`
     }
   }
 
-  const { likes, addLike, removeLike } = useContext(likesContext)
-  // useContext hook을 사용하여 likesContext에서 제공하는 값을 가져옴
-  const isLiked = likes.some((like) => like.img.id === image.id)
-
-  const onLike = () => addLike(image)
-  const offLike = () => removeLike(image)
+  const isLikeOnly = pathname === '/myLikes' ? true : false
+  const { likes, addLike, removeLike, removeLikeOnly, addLikeOnly } =
+    useContext(likesContext)
+  const isLiked = likes.some((like) => like.img.id === image.id && like.isLikes)
+  const onLike = () => (isLikeOnly ? addLikeOnly(image) : addLike(image))
+  const offLike = () => (isLikeOnly ? removeLikeOnly(image) : removeLike(image))
 
   return (
     <>

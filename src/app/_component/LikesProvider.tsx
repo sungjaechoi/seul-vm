@@ -12,6 +12,8 @@ type ContextInitial = {
   likes: Like[]
   addLike: (img: Image) => void
   removeLike: (img: Image) => void
+  removeLikeOnly: (img: Image) => void
+  addLikeOnly: (img: Image) => void
 }
 
 type Props = { children: ReactNode }
@@ -25,6 +27,8 @@ export const likesContext = createContext<ContextInitial>({
   //- Provider가 없을 때 addLike 또는 removeLike를 호출해도 빈 함수이기때문에 아무런 동작도 하지않는다.
   addLike: () => {}, // 초기값 빈 함수
   removeLike: () => {}, // 초기값 빈 함수
+  removeLikeOnly: () => {},
+  addLikeOnly: () => {},
 })
 
 export default function LikesProvider({ children }: Props) {
@@ -34,30 +38,97 @@ export default function LikesProvider({ children }: Props) {
     // 컴포넌트가 마운트될 때 로컬 스토리지에서 데이터 가져오기
     const storedLikes = localStorage.getItem('likes')
     // 로컬 스토리지에서 'likes'라는 키로 저장된 데이터 가져오기
-    if (storedLikes) {
-      // storedLikes가 null 또는 undefined 아니라면 데이터 가져오기
-      //! 로컬스토리지에 데이터가 있는 경우만 가져온다. = 앱 초기 진입시 데이터 없음
-      setLikes(JSON.parse(storedLikes))
+    // if (storedLikes) {
+    //   //// storedLikes가 null 또는 undefined 아니라면 데이터 가져오기
+    //   ////\ 로컬스토리지에 데이터가 있는 경우만 가져온다. = 앱 초기 진입시 데이터 없음
+    //   setLikes(JSON.parse(storedLikes))
+    // }
+    //! 마운트 시 아래의 useEffact의 초기값 'likes'가 저장된다.
+    const isStoredLikesValid = storedLikes !== null && storedLikes !== undefined
+    if (isStoredLikesValid) {
+      // storedLikes가 null, undefined 인지 확인후 아닌 경우만 데이터 가져옴
+      try {
+        setLikes(JSON.parse(storedLikes))
+      } catch (error) {
+        console.error('Error parsing stored likes:', error)
+      }
     }
   }, [])
 
-  useEffect(() => {
-    // likes 상태가 변경될 때마다 로컬 스토리지에 저장
-    localStorage.setItem('likes', JSON.stringify(likes))
-  }, [likes])
+  //! 마운트 될때 likes를 로컬스토리지에 저장
+  // useEffect(() => {
+  //   // likes 상태가 변경될 때마다 로컬 스토리지에 저장
+  //   localStorage.setItem('likes', JSON.stringify(likes))
+  // }, [likes])
 
+  //! setLikes는 비동기로 동작 => localStorage.setItem이 상태가 업데이트되기 전에 호출 된다.
   const addLike = (img: Image) => {
-    setLikes((prevLikes) => [...prevLikes, { img, isLikes: true }])
-    // 기존 배열에 { imgId, isLikes: true }를 추가한 새로운 배열을 생성
+    // 새로운 상태 생성
+    const updatedLikes = [...likes, { img, isLikes: true }]
+    // 상태를 업데이트한다.
+    setLikes(updatedLikes)
+    // 로컬 스토리지를 업데이트한다.
+    localStorage.setItem('likes', JSON.stringify(updatedLikes))
+    console.log('add')
   }
 
   const removeLike = (img: Image) => {
-    setLikes((prevLikes) => prevLikes.filter((like) => like.img.id !== img.id))
+    // 새로운 상태 생성
     // 이전 likes의 배열을 순회하면서 imgId와 일치 하지 않은 요소들만 포함한 새로운 배열
+    const updatedLikes = likes.filter((like) => like.img.id !== img.id)
+    // 상태를 업데이트한다.
+    setLikes(updatedLikes)
+    // 로컬 스토리지를 업데이트한다.
+    localStorage.setItem('likes', JSON.stringify(updatedLikes))
+    console.log('remove')
+  }
+
+  const removeLikeOnly = (img: Image) => {
+    // 새로운 상태  생성 =>  isLikes 변경
+    const updatedLikes = likes.map((like) => {
+      const isTarget = like.img.id === img.id
+      if (isTarget) {
+        return { ...like, isLikes: false }
+      }
+      return like
+    })
+
+    // 상태 업데이트
+    setLikes(updatedLikes)
+
+    const localStoragLikes = localStorage.getItem('likes')
+    const storedLikes = localStoragLikes ? JSON.parse(localStoragLikes) : []
+    const localStorageSave = storedLikes.filter(
+      (like: Like) => like.img.id !== img.id,
+    )
+
+    localStorage.setItem('likes', JSON.stringify(localStorageSave))
+    console.log('removeOnly')
+  }
+
+  const addLikeOnly = (img: Image) => {
+    const updatedLikes = likes.map((like) => {
+      const isTarget = like.img.id === img.id
+      if (isTarget) {
+        return { ...like, isLikes: true }
+      }
+      return like
+    })
+
+    setLikes(updatedLikes)
+
+    const localStorageSave = updatedLikes.filter(
+      (like) => like.isLikes === true,
+    )
+
+    localStorage.setItem('likes', JSON.stringify(localStorageSave))
+    console.log('addOnly')
   }
 
   return (
-    <likesContext.Provider value={{ likes, addLike, removeLike }}>
+    <likesContext.Provider
+      value={{ likes, addLike, removeLike, addLikeOnly, removeLikeOnly }}
+    >
       {children}
     </likesContext.Provider>
   )

@@ -49,14 +49,28 @@ export default function Nav() {
   //? build시 title을 찾을수 없다는 typeError
   //! build는 서버에서 진행
   // * 클라이언트 컴포넌트상에 문제가 없더라도 build는 서버에서 진행하기 때문에 sectionInfo의 pathName에 접근할수 없다.
-  const navName = path === '/' ? '/' : sectionInfo[pathName]?.title
+  // path가 '/'이라면 'home' '/' 아니라면 navName
+  // path search 라면 '검색 결과'
+  const navName = sectionInfo[pathName]?.title
+  function currentPage() {
+    switch (path) {
+      case '/':
+        return 'HOME'
+      case '/myLikes':
+        return '좋아요'
+      case '/search':
+        return '검색 결과'
+      default:
+        return navName
+    }
+  }
 
   return (
     <nav className={style.nav}>
       <div className={style.menu_area}>
         <button className={style.menu_button} type="button" onClick={onToggle}>
           {isToggeButton ? <FiAlignLeft /> : <FiAlignJustify />}
-          <span>{navName === '/' ? 'HOME' : navName}</span>
+          <span>{currentPage()}</span>
         </button>
       </div>
       <ul

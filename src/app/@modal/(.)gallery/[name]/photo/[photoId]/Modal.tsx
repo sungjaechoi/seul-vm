@@ -8,17 +8,26 @@ import CloseButton from '@/app/_component/CloseButton'
 import { Image } from '@/model/Image'
 import { useContext } from 'react'
 import { likesContext } from '@/app/_component/LikesProvider'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import MyLikes from '../../../../../myLikes/MyLikes'
 
 type Props = {
   image: Image
 }
 
 export default function Modal({ image }: Props) {
-  const { likes, addLike, removeLike } = useContext(likesContext)
-  const isLiked = likes.some((like) => like.img.id === image.id)
-  const onLike = () => addLike(image)
-  const offLike = () => removeLike(image)
+  const { likes, addLike, removeLike, removeLikeOnly, addLikeOnly } =
+    useContext(likesContext)
+  const pathname = usePathname()
+  const myLikesPath = pathname.slice(0, 16)
+  console.log(myLikesPath)
+  const isLiked = likes.some((like) => like.img.id === image.id && like.isLikes)
+  const onLike = () =>
+    myLikesPath === '/gallery/myLikes' ? addLikeOnly(image) : addLike(image)
+  const offLike = () =>
+    myLikesPath === '/gallery/myLikes'
+      ? removeLikeOnly(image)
+      : removeLike(image)
   const router = useRouter()
   const onClick = () => {
     router.back()

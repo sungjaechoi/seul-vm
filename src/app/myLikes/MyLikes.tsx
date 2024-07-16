@@ -7,9 +7,8 @@ import style from './myLikes.module.css'
 export default function MyLikes() {
   const { likes } = useContext(likesContext)
   const images = likes.map((like) => like.img)
-  const [likesImg, setLikesImg] = useState(images)
 
-  return likesImg.length === 0 ? (
+  return images.length === 0 ? (
     <div className={style.not_mylikes_area}>
       <h2 className="blind">좋아요를 표시한 이미지 항목</h2>
       <div className={style.img_box}></div>
@@ -18,7 +17,7 @@ export default function MyLikes() {
   ) : (
     <>
       <h2 className="blind">좋아요를 표시한 이미지 항목</h2>
-      <ImgList images={likesImg} query="" />
+      <ImgList images={images} query="" />
     </>
   )
 }

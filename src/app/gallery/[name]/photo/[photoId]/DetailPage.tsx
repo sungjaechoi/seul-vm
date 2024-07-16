@@ -13,7 +13,7 @@ type Props = {
 
 export default function Modal({ image }: Props) {
   const { likes, addLike, removeLike } = useContext(likesContext)
-  const isLiked = likes.some((like) => like.img.id === image.id)
+  const isLiked = likes.some((like) => like.img.id === image.id && like.isLikes)
   const onLike = () => addLike(image)
   const offLike = () => removeLike(image)
   const viewsCount = image.views as number
