@@ -6,14 +6,15 @@ export async function getRandomImages() {
     }
 
     const response = await fetch(
-      `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=30`,
+      `https://pixabay.com/api/?key=${apiKey}&image_type=photo&per_page=30`,
     )
 
     if (!response.ok) {
       throw new Error(`HTTP error status: ${response.status}`)
     }
 
-    const imageArray = await response.json()
+    const imageObject = await response.json()
+    const imageArray = imageObject.hits
 
     return imageArray
   } catch (error) {

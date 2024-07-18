@@ -6,7 +6,7 @@ import { likesContext } from './LikesProvider'
 import { useRouter } from 'next/navigation'
 
 export default function MyLikes() {
-  const { likes } = useContext(likesContext)
+  const { myLikes } = useContext(likesContext)
   const router = useRouter()
   const onClick = () => {
     router.push('/myLikes')
@@ -16,7 +16,7 @@ export default function MyLikes() {
     <button type="button" onClick={onClick} className={style.my_like_button}>
       <div className={style.like_box}>
         <FaHeart />
-        <span className={style.like_num}>{likes.length}</span>
+        <span className={style.like_num}>{myLikes.length}</span>
       </div>
     </button>
   )

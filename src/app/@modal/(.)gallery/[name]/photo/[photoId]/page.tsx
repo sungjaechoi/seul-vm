@@ -8,7 +8,8 @@ type Props = {
 }
 export default async function page({ params }: Props) {
   const photoId = params.photoId
-  const image = (await getImage(photoId)) || {}
+  const imageArray = (await getImage(photoId)) || []
+  const image = imageArray.hits[0]
 
   return <Modal image={image} />
 }

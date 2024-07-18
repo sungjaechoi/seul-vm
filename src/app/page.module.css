@@ -23,6 +23,10 @@
   background-color: #fff;
 }
 
+.logo_search_group:not(:has(nav)) {
+  padding-bottom: 20px;
+}
+
 /* logo */
 
 .logo {

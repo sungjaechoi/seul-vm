@@ -6,11 +6,13 @@ import ImgList from '../_component/ImgList'
 import VisualSection from '../_component/VisualSection'
 import { Image } from '@/model/Image'
 import getSearchResult from '../_lib/getSearchResult'
+import { getRandomColor } from '../_lib/getRandomColor'
 
 function SearchPage() {
   const query = useSearchParams()
   const searchKeyoword = query.get('searchKeyword') || ''
   const [searchResult, setSearchResult] = useState<Image[]>([])
+  const [searchTotal, setSearchTotal] = useState(0)
   const [visualShow, setVisualShow] = useState(false)
   const addSearchResult = (images: Image[]) => {
     setSearchResult([...searchResult, ...images])
@@ -19,25 +21,29 @@ function SearchPage() {
   useEffect(() => {
     const fetchData = async () => {
       setVisualShow(false)
-      const searchResult = (await getSearchResult(1, searchKeyoword)) as Image[]
+      const searchResultObject = await getSearchResult(1, searchKeyoword)
+      const searchResult = searchResultObject.hits as Image[]
       setSearchResult(searchResult)
+      const searchTotal = searchResultObject.total
+      setSearchTotal(searchTotal)
       setVisualShow(true)
     }
     fetchData()
   }, [searchKeyoword])
 
+  const formattedNumber = searchTotal.toLocaleString('en-US')
+
   const v = {
     title: searchKeyoword,
-    description: `"${searchKeyoword}"의 검색 결과 ${searchResult.length}건`,
+    description: `"${searchKeyoword}"의 검색 결과 ${formattedNumber}건`,
   }
 
-  const firstImageSrc = searchResult[0] ? searchResult[0].urls.full : ''
-  const SkeletonImageColor = searchResult[0] ? searchResult[0].color : ''
+  const firstImageSrc = searchResult[0] ? searchResult[0].largeImageURL : ''
 
   return (
     <div>
       {visualShow && (
-        <VisualSection v={v} src={firstImageSrc} color={SkeletonImageColor} />
+        <VisualSection v={v} src={firstImageSrc} color={getRandomColor()} />
       )}
       {searchResult.length === 0 ? null : (
         <section className={style.image_section}>

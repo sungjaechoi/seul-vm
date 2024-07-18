@@ -90,7 +90,7 @@ export default function Nav() {
             [style.is_active]: navName === '배경화면',
           })}
         >
-          <Link className={style.nav_link} href={'/gallery/wallpapers'}>
+          <Link className={style.nav_link} href={'/gallery/backgrounds'}>
             배경화면
           </Link>
         </li>
@@ -105,11 +105,11 @@ export default function Nav() {
         </li>
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: navName === '3D 렌더링',
+            [style.is_active]: navName === '사람',
           })}
         >
-          <Link className={style.nav_link} href={'/gallery/3d-renders'}>
-            3D 렌더링
+          <Link className={style.nav_link} href={'/gallery/people'}>
+            사람
           </Link>
         </li>
         <li
@@ -123,20 +123,20 @@ export default function Nav() {
         </li>
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: navName === '거리 사진',
+            [style.is_active]: navName === '건강',
           })}
         >
-          <Link className={style.nav_link} href={'/gallery/street-photography'}>
-            거리 사진
+          <Link className={style.nav_link} href={'/gallery/health'}>
+            건강
           </Link>
         </li>
         <li
           className={clsx(style.nav_item, {
-            [style.is_active]: navName === '필름',
+            [style.is_active]: navName === '음식',
           })}
         >
-          <Link className={style.nav_link} href={'/gallery/film'}>
-            필름
+          <Link className={style.nav_link} href={'/gallery/food'}>
+            음식
           </Link>
         </li>
       </ul>

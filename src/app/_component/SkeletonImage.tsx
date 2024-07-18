@@ -1,7 +1,6 @@
 'use client'
 
-import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import style from './skeletonImage.module.css'
 import clsx from 'clsx'
 import styled, { css, keyframes } from 'styled-components'
@@ -45,24 +44,32 @@ export default function SkeletonImage({
   color,
 }: Props) {
   const [skeletonState, setSkeletonState] = useState(true)
+  const [isMount, setIsMount] = useState(false)
+
+  useEffect(() => {
+    setIsMount(true)
+  }, [])
 
   return (
-    <div className={style.skeleton_img_area}>
-      <Image
-        fill
-        sizes="100%"
-        priority={priority}
-        loading={priority ? undefined : loading}
-        onLoad={() => {
-          setSkeletonState(false)
-        }}
-        src={src}
-        alt={alt}
-      />
-      <SkeletonImageStyled
-        color={color}
-        className={clsx(style.skeleton, skeletonState ? '' : style.isDisabled)}
-      ></SkeletonImageStyled>
-    </div>
+    isMount && (
+      <div className={style.skeleton_img_area}>
+        <img
+          className={style.image}
+          src={src}
+          alt={alt}
+          loading={priority ? 'eager' : loading}
+          onLoad={() => {
+            setSkeletonState(false)
+          }}
+        />
+        <SkeletonImageStyled
+          color={color}
+          className={clsx(
+            style.skeleton,
+            skeletonState ? '' : style.isDisabled,
+          )}
+        ></SkeletonImageStyled>
+      </div>
+    )
   )
 }

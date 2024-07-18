@@ -1,25 +1,25 @@
-import { Image } from '@/model/Image'
 import style from './topUserInfo.module.css'
+import { FaExclamation } from 'react-icons/fa'
 
-type Props = {
-  userInfo: Image
-}
-
-export default function TopUserInfo({ userInfo }: Props) {
+export default function TopUserInfo() {
   return (
     <section className={style.user_info_section}>
-      <h2 className="blind">`${userInfo.user.name}프로필 정보`</h2>
+      <h2 className="blind">`유저 프로필 정보`</h2>
       <div className={style.section_inner}>
         <div className={style.img_profile}>
-          <img
-            src={userInfo.user.profile_image.large}
-            alt={`${userInfo.user.name}의 프로필 이미지`}
-          />
+          <div>
+            <div>
+              <FaExclamation />
+            </div>
+          </div>
         </div>
         <div className={style.user_info}>
-          <strong>{userInfo.user.name}</strong>
+          <strong>알려드립니다.</strong>
           <p>
-            {userInfo.user.bio ? userInfo.user.bio : '작가의 말이 없습니다.'}
+            유저 페이지는 최초 Unsplash 무료 API로 작업하였으나 잦은 이미지
+            요청에 인한 한도 초과로 인하여 Pixabay API로 변경하였습니다. 하지만
+            Pixabay API의 경우 유저 갤러리 기능을 제공하지 않아, 부득이하게 랜덤
+            이미지 30장으로 대체하였습니다.
           </p>
         </div>
       </div>

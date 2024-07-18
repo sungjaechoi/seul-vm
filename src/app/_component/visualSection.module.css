@@ -23,6 +23,7 @@
 }
 
 .visual_section div:last-child img {
+  height: 460px;
   object-fit: cover;
   object-position: center;
 }

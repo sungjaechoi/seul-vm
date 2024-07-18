@@ -12,6 +12,7 @@ import SkeletonImage from '../_component/SkeletonImage'
 import { useContext } from 'react'
 import { likesContext } from './LikesProvider'
 import path from 'path'
+import { getRandomColor } from '../_lib/getRandomColor'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
@@ -27,7 +28,7 @@ export default function ImgItem({ image, query }: Props) {
     switch (pathname) {
       case '/':
         return `/gallery/random/photo/${image.id}`
-      case `/userPage/${image.user.username}`:
+      case `/userPage/${image.user_id}`:
         return `/gallery/random/photo/${image.id}`
       case '/search':
         return `/gallery/random/photo/${image.id}?searchKeyword=${query}`
@@ -37,7 +38,10 @@ export default function ImgItem({ image, query }: Props) {
         return `${pathname}/photo/${image.id}`
     }
   }
-
+  const dataUrlPath = image.previewURL.slice()
+  const remainingPath = dataUrlPath.split('https://cdn.pixabay.com/photo/')[1]
+  const datePath = remainingPath.split('/').slice(0, 5).join('/')
+  const createdAt = datePath.replace(/\//g, '-')
   const isLikeOnly = pathname === '/myLikes' ? true : false
   const { likes, addLike, removeLike, removeLikeOnly, addLikeOnly } =
     useContext(likesContext)
@@ -49,20 +53,20 @@ export default function ImgItem({ image, query }: Props) {
     <>
       <li className={style.img_item}>
         <SkeletonImage
-          src={image.urls.small}
-          alt={image.alternative_slugs.ko}
+          src={image.largeImageURL}
+          alt=""
           priority={false}
           loading={'lazy'}
-          color={image.color}
+          color={getRandomColor()}
         />
         <Link href={getHref()} className={style.hover_info_area}>
           <div className={style.etc_box}>
             <span className="blind">이미지 생성 일자</span>
-            <span>{dayjs(image.created_at).fromNow(false)}</span>
+            <span>{dayjs(createdAt).fromNow(false)}</span>
           </div>
         </Link>
         <LikeButton isLiked={isLiked} onLike={onLike} offLike={offLike} />
-        <ImageProfile user={image.user} />
+        <ImageProfile user={image} />
       </li>
     </>
   )
