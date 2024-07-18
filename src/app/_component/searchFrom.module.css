@@ -39,9 +39,17 @@
   padding: 0 10px;
 }
 
+.img_search_fieldset input::placeholder {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
 @media (max-width: 768px) {
   .img_search_fieldset input::placeholder {
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 13px;
   }
 }
 

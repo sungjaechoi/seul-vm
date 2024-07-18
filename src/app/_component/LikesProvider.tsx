@@ -10,6 +10,7 @@ type Like = {
 
 type ContextInitial = {
   likes: Like[]
+  myLikes: Like[]
   addLike: (img: Image) => void
   removeLike: (img: Image) => void
   removeLikeOnly: (img: Image) => void
@@ -20,6 +21,7 @@ type Props = { children: ReactNode }
 
 export const likesContext = createContext<ContextInitial>({
   likes: [], // 초기값은 빈 배열
+  myLikes: [],
   //! 초기값에 빈함수가 사용되는 이유 = 타입선언의 성격이 강함 =>  context의 초기값은 결국 암기의 영역!!
   // Provider로 감싸지지 않은 컴포넌트가 안전한 동작하도록 하기 위함
   //- 초기값을 설정하면 타입의 안정성을 유지 할 수 있으며 Provider로 감싸지지 않은 컴포넌트가 안전한 동작을 보장할수 있다.
@@ -33,6 +35,7 @@ export const likesContext = createContext<ContextInitial>({
 
 export default function LikesProvider({ children }: Props) {
   const [likes, setLikes] = useState<Like[]>([])
+  const [myLikes, setMyLikes] = useState<Like[]>([])
 
   useEffect(() => {
     // 컴포넌트가 마운트될 때 로컬 스토리지에서 데이터 가져오기
@@ -49,6 +52,7 @@ export default function LikesProvider({ children }: Props) {
       // storedLikes가 null, undefined 인지 확인후 아닌 경우만 데이터 가져옴
       try {
         setLikes(JSON.parse(storedLikes))
+        setMyLikes(JSON.parse(storedLikes))
       } catch (error) {
         console.error('Error parsing stored likes:', error)
       }
@@ -67,9 +71,10 @@ export default function LikesProvider({ children }: Props) {
     const updatedLikes = [...likes, { img, isLikes: true }]
     // 상태를 업데이트한다.
     setLikes(updatedLikes)
+    setMyLikes(updatedLikes)
+
     // 로컬 스토리지를 업데이트한다.
     localStorage.setItem('likes', JSON.stringify(updatedLikes))
-    console.log('add')
   }
 
   const removeLike = (img: Image) => {
@@ -78,9 +83,10 @@ export default function LikesProvider({ children }: Props) {
     const updatedLikes = likes.filter((like) => like.img.id !== img.id)
     // 상태를 업데이트한다.
     setLikes(updatedLikes)
+    setMyLikes(updatedLikes)
+
     // 로컬 스토리지를 업데이트한다.
     localStorage.setItem('likes', JSON.stringify(updatedLikes))
-    console.log('remove')
   }
 
   const removeLikeOnly = (img: Image) => {
@@ -102,8 +108,9 @@ export default function LikesProvider({ children }: Props) {
       (like: Like) => like.img.id !== img.id,
     )
 
+    setMyLikes(localStorageSave)
+
     localStorage.setItem('likes', JSON.stringify(localStorageSave))
-    console.log('removeOnly')
   }
 
   const addLikeOnly = (img: Image) => {
@@ -121,13 +128,21 @@ export default function LikesProvider({ children }: Props) {
       (like) => like.isLikes === true,
     )
 
+    setMyLikes(localStorageSave)
+
     localStorage.setItem('likes', JSON.stringify(localStorageSave))
-    console.log('addOnly')
   }
 
   return (
     <likesContext.Provider
-      value={{ likes, addLike, removeLike, addLikeOnly, removeLikeOnly }}
+      value={{
+        likes,
+        myLikes,
+        addLike,
+        removeLike,
+        addLikeOnly,
+        removeLikeOnly,
+      }}
     >
       {children}
     </likesContext.Provider>

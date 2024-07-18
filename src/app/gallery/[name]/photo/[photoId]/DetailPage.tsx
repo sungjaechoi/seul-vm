@@ -6,6 +6,7 @@ import SkeletonImage from '@/app/_component/SkeletonImage'
 import { Image } from '@/model/Image'
 import { useContext } from 'react'
 import { likesContext } from '@/app/_component/LikesProvider'
+import { getRandomColor } from '@/app/_lib/getRandomColor'
 
 type Props = {
   image: Image
@@ -16,25 +17,25 @@ export default function Modal({ image }: Props) {
   const isLiked = likes.some((like) => like.img.id === image.id && like.isLikes)
   const onLike = () => addLike(image)
   const offLike = () => removeLike(image)
-  const viewsCount = image.views as number
-  const downloadCount = image.downloads as number
+  const viewsCount = image.views
+  const downloadCount = image.downloads
   const withComma = (count: number) => {
-    return count.toLocaleString()
+    return count ? count.toLocaleString() : '0'
   }
   return (
     <div className={style.img_detail}>
       <div className={style.img_detail_inner}>
         <div className={style.img_detail_contaniner}>
           <div className={style.img_detail_header}>
-            <ImageProfile user={image.user} />
+            <ImageProfile user={image} />
             <LikeButton isLiked={isLiked} onLike={onLike} offLike={offLike} />
           </div>
           <div className={style.img_detail_contents}>
             <SkeletonImage
-              src={image.urls.regular}
-              alt={image.alternative_slugs.ko}
+              src={image.largeImageURL}
+              alt=""
               priority={true}
-              color={image.color}
+              color={getRandomColor()}
             />
           </div>
           <div className={style.img_detail_footer}>

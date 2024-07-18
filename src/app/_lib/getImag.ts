@@ -6,7 +6,7 @@ export default async function getImage(id: string) {
     }
 
     const response = await fetch(
-      `https://api.unsplash.com/photos/${id}?client_id=${apiKey}`,
+      `https://pixabay.com/api/?key=${apiKey}&id=${id}`,
     )
 
     if (!response.ok) {

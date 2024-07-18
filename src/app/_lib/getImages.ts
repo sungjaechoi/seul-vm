@@ -6,14 +6,15 @@ export async function getImages(page: 1 | number, topic?: string) {
     }
 
     const response = await fetch(
-      `https://api.unsplash.com/topics/${topic}/photos?client_id=${apiKey}&order_by=latest&page=${page}&per_page=30`,
+      `https://pixabay.com/api/?key=${apiKey}&category=${topic}&image_type=photo&page=${page}&per_page=30`,
     )
 
     if (!response.ok) {
       throw new Error(`HTTP error status: ${response.status}`)
     }
 
-    const imageArray = await response.json()
+    const imageObject = await response.json()
+    const imageArray = imageObject.hits
 
     return imageArray
   } catch (error) {

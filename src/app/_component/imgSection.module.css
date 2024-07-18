@@ -18,6 +18,7 @@
 }
 
 .img_item div img {
+  height: 450px;
   border-radius: 4px;
   object-fit: contain;
 }

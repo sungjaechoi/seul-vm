@@ -50,15 +50,17 @@ function ImgList({ images, query, addFn }: Props) {
             nextImagePageNum,
             navpath,
           )) as Image[]
+
           addFn && addFn(nextImages)
           setNextImagePageNum((prevNum) => prevNum + 1)
         }
 
         if (pathname === '/search') {
-          const nextSearchResultImages = (await getSearchResult(
+          const nextSearchResultImagesObject = await getSearchResult(
             nextSearchPageNum,
             searchKeyoword,
-          )) as Image[]
+          )
+          const nextSearchResultImages = nextSearchResultImagesObject.hits
           addFn && addFn(nextSearchResultImages)
           setNextSearchPageNum((prevNum) => prevNum + 1)
         }

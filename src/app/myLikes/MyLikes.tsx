@@ -1,5 +1,5 @@
 'use client'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { likesContext } from '../_component/LikesProvider'
 import ImgList from '@/app/_component/ImgList'
 import style from './myLikes.module.css'

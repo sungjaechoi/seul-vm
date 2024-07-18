@@ -80,7 +80,8 @@
   margin: 0 20px;
 }
 
-.modal_contents img {
+.modal_contents div img {
+  height: 100%;
   display: block;
   object-fit: contain;
 }

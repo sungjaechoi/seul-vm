@@ -51,7 +51,8 @@
   height: calc(100% - 160px);
 }
 
-.img_detail_contents img {
+.img_detail_contents div img {
+  height: 654px;
   object-fit: contain;
 }
 
