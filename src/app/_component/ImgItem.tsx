@@ -38,7 +38,7 @@ export default function ImgItem({ image, query }: Props) {
   }
   const dataUrlPath = image.previewURL.slice()
   const remainingPath = dataUrlPath.split('https://cdn.pixabay.com/photo/')[1]
-  const datePath = remainingPath.split('/').slice(0, 5).join('/')
+  const datePath = remainingPath.split('/').slice(0, 3).join('/')
   const createdAt = datePath.replace(/\//g, '-')
   const isLikeOnly = pathname === '/myLikes' ? true : false
   const { likes, addLike, removeLike, removeLikeOnly, addLikeOnly } =
