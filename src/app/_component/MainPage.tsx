@@ -11,7 +11,7 @@ type Props = {
   images: Image[]
 }
 
-export default function MainPage({ v, src, images, color }: Props) {
+export default function MainPage({ v, src, images }: Props) {
   const [imageState, setImageState] = useState(images)
   const addImages = (images: Image[]) => {
     setImageState([...imageState, ...images])

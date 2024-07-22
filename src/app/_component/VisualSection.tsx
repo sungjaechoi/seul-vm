@@ -4,13 +4,11 @@ import style from './visualSection.module.css'
 type Props = {
   v: { title: string; description: string }
   src: string
-  color: string
 }
 
 export default function VisualSection({
   v: { title, description },
   src,
-  color,
 }: Props) {
   return (
     <section className={style.visual_section}>
@@ -19,12 +17,7 @@ export default function VisualSection({
         <span className={style.section_description}>{description}</span>
       </div>
       {src && (
-        <SkeletonImage
-          src={src}
-          alt={`${title} 이미지`}
-          priority={true}
-          color={color}
-        />
+        <SkeletonImage src={src} alt={`${title} 이미지`} priority={true} />
       )}
     </section>
   )
