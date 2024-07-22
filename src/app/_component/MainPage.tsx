@@ -9,7 +9,6 @@ type Props = {
   v: { title: string; description: string }
   src: string
   images: Image[]
-  color: string
 }
 
 export default function MainPage({ v, src, images, color }: Props) {
@@ -19,7 +18,7 @@ export default function MainPage({ v, src, images, color }: Props) {
   }
   return (
     <div>
-      <VisualSection v={v} src={src} color={color} />
+      <VisualSection v={v} src={src} />
       <section className={style.image_section}>
         <h3 className="blind">이미지 리스트</h3>
         <div className={style.images_section_inner}>

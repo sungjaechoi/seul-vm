@@ -6,7 +6,6 @@ import SkeletonImage from '@/app/_component/SkeletonImage'
 import { Image } from '@/model/Image'
 import { useContext } from 'react'
 import { likesContext } from '@/app/_component/LikesProvider'
-import { getRandomColor } from '@/app/_lib/getRandomColor'
 
 type Props = {
   image: Image
@@ -31,12 +30,7 @@ export default function Modal({ image }: Props) {
             <LikeButton isLiked={isLiked} onLike={onLike} offLike={offLike} />
           </div>
           <div className={style.img_detail_contents}>
-            <SkeletonImage
-              src={image.largeImageURL}
-              alt=""
-              priority={true}
-              color={getRandomColor()}
-            />
+            <SkeletonImage src={image.largeImageURL} alt="" priority={true} />
           </div>
           <div className={style.img_detail_footer}>
             <ul>

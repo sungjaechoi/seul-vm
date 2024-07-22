@@ -11,8 +11,6 @@ import LikeButton from './LikeButton'
 import SkeletonImage from '../_component/SkeletonImage'
 import { useContext } from 'react'
 import { likesContext } from './LikesProvider'
-import path from 'path'
-import { getRandomColor } from '../_lib/getRandomColor'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
@@ -57,7 +55,6 @@ export default function ImgItem({ image, query }: Props) {
           alt=""
           priority={false}
           loading={'lazy'}
-          color={getRandomColor()}
         />
         <Link href={getHref()} className={style.hover_info_area}>
           <div className={style.etc_box}>

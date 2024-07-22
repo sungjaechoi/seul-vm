@@ -1,5 +1,4 @@
 import MainPage from './_component/MainPage'
-import { getRandomColor } from './_lib/getRandomColor'
 import { getRandomImages } from './_lib/getRandomImages'
 
 export default async function page() {
@@ -10,12 +9,5 @@ export default async function page() {
   const images = (await getRandomImages()) || []
   const firsImageSrc = images[0] ? images[0].largeImageURL : ''
 
-  return (
-    <MainPage
-      v={v}
-      src={firsImageSrc}
-      images={images}
-      color={getRandomColor()}
-    />
-  )
+  return <MainPage v={v} src={firsImageSrc} images={images} />
 }

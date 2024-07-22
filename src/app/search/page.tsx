@@ -6,7 +6,6 @@ import ImgList from '../_component/ImgList'
 import VisualSection from '../_component/VisualSection'
 import { Image } from '@/model/Image'
 import getSearchResult from '../_lib/getSearchResult'
-import { getRandomColor } from '../_lib/getRandomColor'
 
 function SearchPage() {
   const query = useSearchParams()
@@ -42,9 +41,7 @@ function SearchPage() {
 
   return (
     <div>
-      {visualShow && (
-        <VisualSection v={v} src={firstImageSrc} color={getRandomColor()} />
-      )}
+      {visualShow && <VisualSection v={v} src={firstImageSrc} />}
       {searchResult.length === 0 ? null : (
         <section className={style.image_section}>
           <h3 className="blind">이미지 리스트</h3>
