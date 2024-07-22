@@ -9,8 +9,11 @@ import LikesProvider from './_component/LikesProvider'
 import MyLikes from './_component/MyLikes'
 
 export const metadata: Metadata = {
-  title: 'seul - unsplash clone',
-  description: 'unsplash toy project',
+  title: 'seul image gallery',
+  description: 'pixabayAPI toy project',
+  icons: {
+    icon: '/img/seul_logo.png',
+  },
 }
 
 const pretendard = localFont({
