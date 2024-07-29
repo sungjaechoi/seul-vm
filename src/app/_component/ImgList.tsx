@@ -28,6 +28,7 @@ function ImgList({ images, query, addFn }: Props) {
   const searchKeywordQuery = useSearchParams()
   const searchKeyoword = searchKeywordQuery.get('searchKeyword') || ''
   const [isLoading, setIsLoading] = useState(false)
+  const [nextRandomImagePageNum, setNextRandomImagePageNum] = useState(2)
   const [nextImagePageNum, setNextImagePageNum] = useState(2)
   const [nextSearchPageNum, setNextSearchPageNum] = useState(2)
   const pathname = usePathname()
@@ -38,8 +39,12 @@ function ImgList({ images, query, addFn }: Props) {
       if (!isLoading) {
         setIsLoading(true)
         if (pathname === '/') {
-          const nextRandomImages = (await getRandomImages()) as Image[]
+          const nextRandomImages = (await getImages(
+            nextImagePageNum,
+            'random',
+          )) as Image[]
           addFn && addFn(nextRandomImages)
+          setNextRandomImagePageNum((prevNum) => prevNum + 1)
         }
 
         const isNavCase = Object.hasOwn(sectionInfo, navpath)

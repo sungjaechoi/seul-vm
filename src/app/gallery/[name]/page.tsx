@@ -1,7 +1,7 @@
 import React from 'react'
 import { typeSectionInfo, sectionInfo } from '@/model/SectionInfo'
-import { getImages } from '@/app/_lib/getImages'
 import MainPage from '@/app/_component/MainPage'
+import { getImages } from '@/app/_lib/getImages'
 
 type Props = {
   params: {
