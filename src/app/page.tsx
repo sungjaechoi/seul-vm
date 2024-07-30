@@ -6,7 +6,7 @@ export default async function page() {
     title: 'seul gallery',
     description: 'pixabayAPI를 이용한 이미지 갤러리 입니다.',
   }
-  const images = (await getImages(1, 'random')) || []
+  const images = (await getImages(1)) || []
   const firsImageSrc = images[0] ? images[0].largeImageURL : ''
 
   return <MainPage v={v} src={firsImageSrc} images={images} />

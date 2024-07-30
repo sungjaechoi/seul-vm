@@ -12,7 +12,7 @@ type Props = {
 
 export default async function page({ params }: Props) {
   const userName = params.userName
-  const images = (await getRandomImages()) as Image[]
+  const images = (await getRandomImages(1)) as Image[]
 
   return (
     <>

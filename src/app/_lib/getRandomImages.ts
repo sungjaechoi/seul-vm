@@ -1,4 +1,4 @@
-export async function getRandomImages() {
+export async function getRandomImages(page: 1 | number) {
   try {
     const apiKey = process.env.NEXT_PUBLIC_API_KEY
     if (!apiKey) {
@@ -6,7 +6,7 @@ export async function getRandomImages() {
     }
 
     const response = await fetch(
-      `https://pixabay.com/api/?key=${apiKey}&image_type=photo&per_page=30`,
+      `https://pixabay.com/api/?key=${apiKey}&category=feelings&image_type=photo&page=${page}&per_page=30`,
     )
 
     if (!response.ok) {

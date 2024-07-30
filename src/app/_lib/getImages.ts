@@ -7,7 +7,6 @@ export async function getImages(page: 1 | number, topic?: string) {
 
     const response = await fetch(
       `https://pixabay.com/api/?key=${apiKey}&category=${topic}&image_type=photo&page=${page}&per_page=30`,
-      { cache: 'no-store' },
     )
 
     if (!response.ok) {
