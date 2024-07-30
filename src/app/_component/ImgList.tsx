@@ -39,9 +39,8 @@ function ImgList({ images, query, addFn }: Props) {
       if (!isLoading) {
         setIsLoading(true)
         if (pathname === '/') {
-          const nextRandomImages = (await getImages(
-            nextImagePageNum,
-            'random',
+          const nextRandomImages = (await getRandomImages(
+            nextRandomImagePageNum,
           )) as Image[]
           addFn && addFn(nextRandomImages)
           setNextRandomImagePageNum((prevNum) => prevNum + 1)
