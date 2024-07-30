@@ -7,6 +7,7 @@ export async function getRandomImages(page: 1 | number) {
 
     const response = await fetch(
       `https://pixabay.com/api/?key=${apiKey}&category=feelings&image_type=photo&page=${page}&per_page=30`,
+      { next: { revalidate: 0 } },
     )
 
     if (!response.ok) {
