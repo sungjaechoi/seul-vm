@@ -49,7 +49,7 @@ function SearchPage() {
             <ImgList
               images={searchResult}
               query={searchKeyoword}
-              addFn={addSearchResult}
+              addImages={addSearchResult}
             />
           </div>
         </section>
