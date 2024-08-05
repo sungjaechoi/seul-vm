@@ -13,18 +13,18 @@ import { throttle } from 'lodash'
 type Props = {
   images: Image[]
   query: string
-  addFn?: (images: Image[]) => void
+  addImages?: (images: Image[]) => void
 }
 
-export default function ImgListWrapper({ images, query, addFn }: Props) {
+export default function ImgListWrapper({ images, query, addImages }: Props) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ImgList images={images} query={query} addFn={addFn} />
+      <ImgList images={images} query={query} addImages={addImages} />
     </Suspense>
   )
 }
 
-function ImgList({ images, query, addFn }: Props) {
+function ImgList({ images, query, addImages }: Props) {
   const searchKeywordQuery = useSearchParams()
   const searchKeyoword = searchKeywordQuery.get('searchKeyword') || ''
   const [isLoading, setIsLoading] = useState(false)
@@ -42,7 +42,7 @@ function ImgList({ images, query, addFn }: Props) {
           const nextRandomImages = (await getRandomImages(
             nextRandomImagePageNum,
           )) as Image[]
-          addFn && addFn(nextRandomImages)
+          addImages && addImages(nextRandomImages)
           setNextRandomImagePageNum((prevNum) => prevNum + 1)
         }
 
@@ -55,7 +55,7 @@ function ImgList({ images, query, addFn }: Props) {
             navpath,
           )) as Image[]
 
-          addFn && addFn(nextImages)
+          addImages && addImages(nextImages)
           setNextImagePageNum((prevNum) => prevNum + 1)
         }
 
@@ -65,7 +65,7 @@ function ImgList({ images, query, addFn }: Props) {
             searchKeyoword,
           )
           const nextSearchResultImages = nextSearchResultImagesObject.hits
-          addFn && addFn(nextSearchResultImages)
+          addImages && addImages(nextSearchResultImages)
           setNextSearchPageNum((prevNum) => prevNum + 1)
         }
         setIsLoading(false)
@@ -85,7 +85,7 @@ function ImgList({ images, query, addFn }: Props) {
     return () => window.removeEventListener('scroll', scrollListener)
   }, [
     isLoading,
-    addFn,
+    addImages,
     navpath,
     pathname,
     searchKeyoword,
