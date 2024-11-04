@@ -27,17 +27,16 @@
   position: absolute;
   top: 0px;
   right: 0px;
-  display: none;
+  display: flex;
   align-items: flex-end;
   width: 100%;
   height: 100%;
   padding: 20px 20px;
-  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 6px;
 }
 
 .etc_box {
-  display: flex;
+  display: none;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
@@ -50,12 +49,18 @@
 
 @media (max-width: 768px) {
   .hover_info_area {
-    display: flex;
     background-color: rgba(0, 0, 0, 0.1);
   }
 }
 
-.img_item:hover .hover_info_area {
+.img_item:hover .hover_info_area,
+.img_item:focus .hover_info_area {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.img_item:hover .etc_box,
+.img_item:focus .etc_box {
   display: flex;
 }
 
@@ -80,13 +85,19 @@
   .img_item button + a {
     display: flex;
   }
+
+  .img_item .etc_box {
+    display: flex;
+  }
 }
 @media (hover: hover) {
-  .img_item:hover button + a {
+  .img_item:hover button + a,
+  .img_item:focus button + a {
     display: flex;
   }
 
-  .img_item:hover button {
+  .img_item:hover button,
+  .img_item:focus button {
     display: flex;
   }
 }
