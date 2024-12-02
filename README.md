@@ -1,7 +1,5 @@
 브라우저에서 [https://next14-unsplash-git-main-sungjaechois-projects.vercel.app/](https://next14-unsplash-git-main-sungjaechois-projects.vercel.app/)을 열어 결과를 확인하세요.
 
-`app/page.tsx` 파일을 수정하여 페이지를 편집할 수 있습니다. 파일을 수정하면 페이지가 자동으로 업데이트됩니다.
-
 ## 프로젝트 구조
 
 ### 주요 컴포넌트
