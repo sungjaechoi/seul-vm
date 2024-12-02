@@ -6,7 +6,7 @@ import SkeletonImage from '@/app/_component/SkeletonImage'
 import ScrollEvent from './_event/ScrollEvent'
 import CloseButton from '@/app/_component/CloseButton'
 import { Image } from '@/model/Image'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { likesContext } from '@/app/_component/LikesProvider'
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -17,6 +17,11 @@ type Props = {
 export default function Modal({ image }: Props) {
   const { likes, addLike, removeLike, removeLikeOnly, addLikeOnly } =
     useContext(likesContext)
+  useEffect(() => {
+    const el = document.querySelector('#modal') as HTMLInputElement
+    console.log(el)
+    el.focus()
+  }, [])
   const pathname = usePathname()
   const myLikesPath = pathname.slice(0, 16)
   const isLiked = likes.some((like) => like.img.id === image.id && like.isLikes)
@@ -36,7 +41,7 @@ export default function Modal({ image }: Props) {
     return count ? count.toLocaleString() : '0'
   }
   return (
-    <div className={style.modal}>
+    <div className={style.modal} id="modal" tabIndex={0}>
       <ScrollEvent />
       <div className={style.modal_inner}>
         <button

@@ -9,7 +9,7 @@ import ImageProfile from './ImageProfile'
 import { usePathname } from 'next/navigation'
 import LikeButton from './LikeButton'
 import SkeletonImage from '../_component/SkeletonImage'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { likesContext } from './LikesProvider'
 
 dayjs.locale('ko')
@@ -46,6 +46,24 @@ export default function ImgItem({ image, query }: Props) {
   const isLiked = likes.some((like) => like.img.id === image.id && like.isLikes)
   const onLike = () => (isLikeOnly ? addLikeOnly(image) : addLike(image))
   const offLike = () => (isLikeOnly ? removeLikeOnly(image) : removeLike(image))
+
+  const [focusElement, setFocusElement] = useState<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const isModalOpen = pathname.includes('/photo/')
+
+    // 모달이 열릴 때, 포커스를 저장
+    if (isModalOpen && !focusElement) {
+      // document.activeElement : 현재 포커스를 받고 있는 DOM요소
+      setFocusElement(document.activeElement as HTMLElement)
+    }
+
+    // 모달이 닫힐 때, 저장된 포커스로 복원하고 focusElement 초기화
+    if (!isModalOpen && focusElement) {
+      focusElement?.focus()
+      setFocusElement(null)
+    }
+  }, [pathname, focusElement])
 
   return (
     <>

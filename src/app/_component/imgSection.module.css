@@ -53,14 +53,16 @@
   }
 }
 
-.img_item:hover .hover_info_area,
-.img_item:focus .hover_info_area {
+.hover_info_area:hover,
+.hover_info_area:focus,
+.img_item:focus-within .hover_info_area {
   display: flex;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.img_item:hover .etc_box,
-.img_item:focus .etc_box {
+.etc_box:hover,
+.etc_box:focus,
+.img_item:focus-within .etc_box {
   display: flex;
 }
 
@@ -90,14 +92,17 @@
     display: flex;
   }
 }
+
 @media (hover: hover) {
   .img_item:hover button + a,
-  .img_item:focus button + a {
+  .img_item:focus button + a,
+  .img_item:focus-within button + a {
     display: flex;
   }
 
   .img_item:hover button,
-  .img_item:focus button {
+  .img_item:focus button,
+  .img_item:focus-within button {
     display: flex;
   }
 }

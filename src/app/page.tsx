@@ -14,7 +14,6 @@ export default function Page() {
   const addImages = (images: Image[]) => {
     setImages((prevImages) => [...prevImages, ...images])
   }
-  console.log(images)
 
   useEffect(() => {
     const fetchImages = async () => {

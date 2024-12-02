@@ -19,6 +19,7 @@ export default function LikeButton({ isLiked, onLike, offLike }: Props) {
 
   return (
     <button
+      tabIndex={0}
       className={style.like_button}
       type="button"
       onClick={onLickBtnClick}
